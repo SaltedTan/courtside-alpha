@@ -333,6 +333,313 @@ def extract_game_snapshots(pbp, games_with_rolling, snapshot_interval=90):
 
 
 # ══════════════════════════════════════════════
+# SECTION 4b: RUNNING BOXSCORE FROM PBP
+#   Reconstruct live boxscore stats at each
+#   snapshot time using play-by-play events.
+# ══════════════════════════════════════════════
+
+def _compute_game_boxscore(game_pbp, home_id, away_id, snap_times):
+    """
+    Walk through a single game's PBP chronologically, maintaining
+    running boxscore stats. Emit LIVE_* features at each snapshot time.
+
+    Returns: list of dicts (one per snap_time, same order as snap_times).
+    """
+    if game_pbp.empty or len(snap_times) == 0:
+        return [{}] * len(snap_times)
+
+    # Sort chronologically: high secs_left (start) → low (end), then by action order
+    events = game_pbp.sort_values(
+        ["GAME_SECONDS_LEFT", "actionNumber"], ascending=[False, True]
+    )
+
+    # Sort snapshot times descending (earliest game moment first)
+    snap_order = np.argsort(-snap_times)
+    sorted_times = snap_times[snap_order]
+
+    # ── Running team stats ──
+    ts = {}
+    for tid in [home_id, away_id]:
+        ts[tid] = {
+            "fgm": 0, "fga": 0, "fg3m": 0, "fg3a": 0,
+            "ftm": 0, "fta": 0, "reb": 0, "oreb": 0,
+            "ast": 0, "tov": 0, "stl": 0, "blk": 0, "pf": 0,
+        }
+
+    # Per-player tracking for foul trouble + hot/cold shooters
+    player_stats = {}   # (tid, pid) → {"fgm", "fga", "fg3m", "ftm", "pf"}
+    quarter_fouls = {home_id: 0, away_id: 0}
+    timeouts_used = {home_id: 0, away_id: 0}
+    last_missed_team = None
+    current_period = 1
+
+    def _get_player(tid, pid):
+        key = (tid, pid)
+        if key not in player_stats:
+            player_stats[key] = {"fgm": 0, "fga": 0, "fg3m": 0, "ftm": 0, "pf": 0}
+        return player_stats[key]
+
+    def _emit():
+        """Build LIVE_* feature dict from current running state."""
+        feats = {}
+        for side, tid in [("HOME", home_id), ("AWAY", away_id)]:
+            s = ts[tid]
+            fgm, fga = s["fgm"], s["fga"]
+            fg3m, fg3a = s["fg3m"], s["fg3a"]
+            ftm, fta = s["ftm"], s["fta"]
+            pts = fgm * 2 + fg3m + ftm   # fgm counts all FG (2s as 2, 3s as 2) + extra pt per 3 + FT
+
+            feats[f"LIVE_{side}_FG_PCT"] = fgm / fga if fga > 0 else 0
+            feats[f"LIVE_{side}_FG3_PCT"] = fg3m / fg3a if fg3a > 0 else 0
+            feats[f"LIVE_{side}_EFG_PCT"] = (fgm + 0.5 * fg3m) / fga if fga > 0 else 0
+            tsa = fga + 0.44 * fta
+            feats[f"LIVE_{side}_TS_PCT"] = pts / (2 * tsa) if tsa > 0 else 0
+            feats[f"LIVE_{side}_FT_PCT"] = ftm / fta if fta > 0 else 0
+
+            feats[f"LIVE_{side}_REB_OFF"] = s["oreb"]
+            feats[f"LIVE_{side}_REB_TOTAL"] = s["reb"]
+            feats[f"LIVE_{side}_AST"] = s["ast"]
+            feats[f"LIVE_{side}_TOV"] = s["tov"]
+            feats[f"LIVE_{side}_STL"] = s["stl"]
+            feats[f"LIVE_{side}_BLK"] = s["blk"]
+            feats[f"LIVE_{side}_FOULS"] = s["pf"]
+            feats[f"LIVE_{side}_FT_RATE"] = fta / fga if fga > 0 else 0
+
+            # In-bonus: 5+ team fouls in current quarter
+            feats[f"LIVE_{side}_IN_BONUS"] = int(quarter_fouls.get(tid, 0) >= 5)
+
+            # Foul trouble: players with 4+ personal fouls
+            trouble = sum(
+                1 for (t, _), ps in player_stats.items()
+                if t == tid and ps["pf"] >= 4
+            )
+            feats[f"LIVE_{side}_FOUL_TROUBLE"] = trouble
+
+            # Timeouts remaining (NBA: 7 per game)
+            feats[f"LIVE_{side}_TIMEOUTS"] = max(0, 7 - timeouts_used.get(tid, 0))
+
+            # Hot/cold shooters (players with 5+ FGA)
+            hot = cold = 0
+            for (t, _), ps in player_stats.items():
+                if t == tid and ps["fga"] >= 5:
+                    pct = ps["fgm"] / ps["fga"]
+                    if pct >= 0.6:
+                        hot += 1
+                    elif pct <= 0.3:
+                        cold += 1
+            feats[f"LIVE_{side}_HOT_SHOOTERS"] = hot
+            feats[f"LIVE_{side}_COLD_SHOOTERS"] = cold
+
+            # Star player = highest-FGA player on team
+            star_key = None
+            max_fga = 0
+            for (t, p), ps in player_stats.items():
+                if t == tid and ps["fga"] > max_fga:
+                    max_fga = ps["fga"]
+                    star_key = (t, p)
+            if star_key:
+                sp = player_stats[star_key]
+                feats[f"LIVE_{side}_STAR_PTS"] = sp["fgm"] * 2 + sp["fg3m"] + sp["ftm"]
+                feats[f"LIVE_{side}_STAR_FOULS"] = sp["pf"]
+            else:
+                feats[f"LIVE_{side}_STAR_PTS"] = 0
+                feats[f"LIVE_{side}_STAR_FOULS"] = 0
+
+            # Can't compute from PBP alone
+            feats[f"LIVE_{side}_STAR_PM"] = 0
+            feats[f"LIVE_{side}_STAR_MINS"] = 0
+            feats[f"LIVE_{side}_LINEUP_PM"] = 0
+            feats[f"LIVE_{side}_PTS_PAINT"] = 0
+            feats[f"LIVE_{side}_PTS_FASTBREAK"] = 0
+            feats[f"LIVE_{side}_PTS_2ND"] = 0
+            feats[f"LIVE_{side}_PTS_OFF_TO"] = 0
+            feats[f"LIVE_{side}_BENCH_PTS"] = 0
+            feats[f"LIVE_{side}_BIGGEST_LEAD"] = 0
+            feats[f"LIVE_{side}_BIGGEST_RUN"] = 0
+
+        # Differentials
+        feats["LIVE_DIFF_FG_PCT"] = feats["LIVE_HOME_FG_PCT"] - feats["LIVE_AWAY_FG_PCT"]
+        feats["LIVE_DIFF_FG3_PCT"] = feats["LIVE_HOME_FG3_PCT"] - feats["LIVE_AWAY_FG3_PCT"]
+        feats["LIVE_DIFF_EFG_PCT"] = feats["LIVE_HOME_EFG_PCT"] - feats["LIVE_AWAY_EFG_PCT"]
+        feats["LIVE_DIFF_TS_PCT"] = feats["LIVE_HOME_TS_PCT"] - feats["LIVE_AWAY_TS_PCT"]
+        feats["LIVE_DIFF_REB_OFF"] = feats["LIVE_HOME_REB_OFF"] - feats["LIVE_AWAY_REB_OFF"]
+        feats["LIVE_DIFF_REB_TOTAL"] = feats["LIVE_HOME_REB_TOTAL"] - feats["LIVE_AWAY_REB_TOTAL"]
+        h_ast_to = feats["LIVE_HOME_AST"] / max(feats["LIVE_HOME_TOV"], 1)
+        a_ast_to = feats["LIVE_AWAY_AST"] / max(feats["LIVE_AWAY_TOV"], 1)
+        feats["LIVE_DIFF_AST_TO"] = h_ast_to - a_ast_to
+        feats["LIVE_DIFF_TOV"] = feats["LIVE_HOME_TOV"] - feats["LIVE_AWAY_TOV"]
+        feats["LIVE_DIFF_FOULS"] = feats["LIVE_HOME_FOULS"] - feats["LIVE_AWAY_FOULS"]
+        feats["LIVE_DIFF_PTS_PAINT"] = 0
+        feats["LIVE_DIFF_PTS_2ND"] = 0
+        feats["LIVE_DIFF_BENCH_PTS"] = 0
+        feats["LIVE_DIFF_LINEUP_PM"] = 0
+        feats["LIVE_LEAD_CHANGES"] = 0   # already computed in core snapshot features
+        feats["LIVE_TIMES_TIED"] = 0
+
+        # Composites
+        feats["LIVE_STAR_FOUL_DANGER"] = max(
+            feats["LIVE_HOME_STAR_FOULS"], feats["LIVE_AWAY_STAR_FOULS"]
+        )
+        feats["LIVE_FOUL_TROUBLE_DIFF"] = (
+            feats["LIVE_AWAY_FOUL_TROUBLE"] - feats["LIVE_HOME_FOUL_TROUBLE"]
+        )
+        return feats
+
+    # ── Walk through events, emitting snapshots at boundaries ──
+    results = [None] * len(snap_times)
+    snap_idx = 0
+
+    for row in events.itertuples():
+        secs_left = row.GAME_SECONDS_LEFT
+
+        # Emit snapshots for all times we've reached (secs_left dropped below them)
+        while snap_idx < len(sorted_times) and sorted_times[snap_idx] >= secs_left:
+            results[snap_order[snap_idx]] = _emit()
+            snap_idx += 1
+
+        # ── Process this event ──
+        tid = row.teamId
+        if tid not in ts:
+            # Period start, jump ball, etc. — check for period change
+            period = int(getattr(row, "PERIOD", current_period))
+            if period != current_period:
+                quarter_fouls = {home_id: 0, away_id: 0}
+                current_period = period
+            continue
+
+        action = row.actionType
+        desc = str(getattr(row, "description", ""))
+        period = int(getattr(row, "PERIOD", current_period))
+        pid = int(getattr(row, "personId", 0))
+
+        if period != current_period:
+            quarter_fouls = {home_id: 0, away_id: 0}
+            current_period = period
+
+        s = ts[tid]
+
+        if action == "Made Shot":
+            sv = int(getattr(row, "shotValue", 2))
+            s["fgm"] += 1
+            s["fga"] += 1
+            if sv == 3:
+                s["fg3m"] += 1
+                s["fg3a"] += 1
+            if "AST" in desc:
+                s["ast"] += 1
+            ps = _get_player(tid, pid)
+            ps["fgm"] += 1
+            ps["fga"] += 1
+            if sv == 3:
+                ps["fg3m"] += 1
+            last_missed_team = None
+
+        elif action == "Missed Shot":
+            s["fga"] += 1
+            sv = int(getattr(row, "shotValue", 2))
+            if sv == 3:
+                s["fg3a"] += 1
+            ps = _get_player(tid, pid)
+            ps["fga"] += 1
+            last_missed_team = tid
+
+        elif action == "Free Throw":
+            s["fta"] += 1
+            if "MISS" not in desc:
+                s["ftm"] += 1
+                ps = _get_player(tid, pid)
+                ps["ftm"] += 1
+
+        elif action == "Rebound":
+            s["reb"] += 1
+            if last_missed_team == tid:
+                s["oreb"] += 1
+            last_missed_team = None
+
+        elif action == "Turnover":
+            s["tov"] += 1
+
+        elif action == "Foul":
+            s["pf"] += 1
+            quarter_fouls[tid] = quarter_fouls.get(tid, 0) + 1
+            ps = _get_player(tid, pid)
+            ps["pf"] += 1
+
+        elif action == "Timeout":
+            timeouts_used[tid] = timeouts_used.get(tid, 0) + 1
+
+        elif action == "":
+            if "STEAL" in desc:
+                s["stl"] += 1
+            elif "BLOCK" in desc:
+                s["blk"] += 1
+
+    # Emit remaining snapshots (after last event)
+    while snap_idx < len(sorted_times):
+        results[snap_order[snap_idx]] = _emit()
+        snap_idx += 1
+
+    return [r if r is not None else {} for r in results]
+
+
+def enrich_snapshots_with_boxscore(snapshots, pbp, games):
+    """
+    Reconstruct running boxscore stats from play-by-play data
+    and add LIVE_* features to each snapshot.
+    """
+    print("\n  Enriching snapshots with live boxscore features from PBP...")
+
+    # Map GAME_ID → home/away team IDs
+    home_map = (
+        games[games["MATCHUP"].str.contains("vs.", na=False)]
+        [["GAME_ID", "TEAM_ID"]]
+        .drop_duplicates("GAME_ID")
+        .set_index("GAME_ID")["TEAM_ID"]
+        .to_dict()
+    )
+    away_map = (
+        games[~games["MATCHUP"].str.contains("vs.", na=False)]
+        [["GAME_ID", "TEAM_ID"]]
+        .drop_duplicates("GAME_ID")
+        .set_index("GAME_ID")["TEAM_ID"]
+        .to_dict()
+    )
+
+    # Process each game
+    all_live = []
+    game_ids = snapshots["GAME_ID"].unique()
+
+    for i, game_id in enumerate(game_ids):
+        home_id = home_map.get(game_id)
+        away_id = away_map.get(game_id)
+
+        snap_mask = snapshots["GAME_ID"] == game_id
+        n_snaps = snap_mask.sum()
+
+        if home_id is None or away_id is None:
+            all_live.extend([{}] * n_snaps)
+            continue
+
+        game_pbp = pbp[pbp["GAME_ID"] == game_id]
+        snap_times = snapshots.loc[snap_mask, "GAME_SECONDS_LEFT"].values
+
+        feats_list = _compute_game_boxscore(game_pbp, home_id, away_id, snap_times)
+        all_live.extend(feats_list)
+
+        if (i + 1) % 100 == 0:
+            print(f"    Processed {i + 1}/{len(game_ids)} games...")
+
+    # Add LIVE columns to snapshots
+    live_df = pd.DataFrame(all_live, index=snapshots.index)
+    for col in live_df.columns:
+        snapshots[col] = live_df[col].fillna(0)
+
+    n_live = len([c for c in snapshots.columns if c.startswith("LIVE_")])
+    print(f"  Added {n_live} LIVE boxscore features to {len(snapshots)} snapshots")
+    return snapshots
+
+
+# ══════════════════════════════════════════════
 # SECTION 5: MERGE ALL FEATURES
 # ══════════════════════════════════════════════
 
@@ -813,27 +1120,31 @@ if __name__ == "__main__":
     print("=" * 50)
 
     # ── Load ──
-    print("\n[1/9] Loading data...")
+    print("\n[1/10] Loading data...")
     data = load_all_data()
 
     # ── Rolling features ──
-    print("\n[2/9] Building rolling team form features...")
+    print("\n[2/10] Building rolling team form features...")
     games_rolling = build_rolling_team_features(data["games"])
 
     # ── Static profiles ──
-    print("\n[3/9] Building static team profiles...")
+    print("\n[3/10] Building static team profiles...")
     team_profiles = build_team_profiles(data)
 
     # ── Game snapshots ──
-    print("\n[4/9] Extracting game snapshots (90s intervals)...")
+    print("\n[4/10] Extracting game snapshots (90s intervals)...")
     snapshots = extract_game_snapshots(data["pbp"], games_rolling, snapshot_interval=90)
 
+    # ── Boxscore enrichment from PBP ──
+    print("\n[5/10] Reconstructing live boxscore stats from PBP...")
+    snapshots = enrich_snapshots_with_boxscore(snapshots, data["pbp"], data["games"])
+
     # ── Merge everything ──
-    print("\n[5/9] Merging all features...")
+    print("\n[6/10] Merging all features...")
     df = merge_all_features(snapshots, games_rolling, team_profiles, data["fatigue"])
 
     # ── Recency weights ──
-    print("\n[6/9] Computing sample weights...")
+    print("\n[7/10] Computing sample weights...")
     df = compute_sample_weights(df, data["games"])
 
     # ── Define feature sets ──
@@ -843,17 +1154,17 @@ if __name__ == "__main__":
     print(f"  Live features: {len(live_features)}")
 
     # ── Out-of-fold predictions (the key fix) ──
-    print("\n[7/9] Generating out-of-fold predictions...")
+    print("\n[8/10] Generating out-of-fold predictions...")
     df = generate_oof_predictions(df, pregame_features, live_features)
 
     # ── Edge computation ──
-    print("\n[8/9] Computing edges and training edge model...")
+    print("\n[9/10] Computing edges and training edge model...")
     df = compute_edges(df)
     edge_model, edge_features = train_edge_model(df, live_features)
     print_feature_importance(edge_model, edge_features, title="Edge Quality")
 
     # ── Backtest ──
-    print("\n[9/9] Backtesting strategy...")
+    print("\n[10/10] Backtesting strategy...")
     results = backtest_strategy(df, edge_model, edge_features)
 
     # ── Train final production models on ALL data ──
