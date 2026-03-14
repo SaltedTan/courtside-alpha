@@ -12,8 +12,21 @@ dist/
 build/
 .pytest_cache/
 .mypy_cache/
-*.parquet
-data/
+# ── Data: ignore training data, keep inference artifacts ──
+# Training-only (large raw datasets)
+data/play_by_play.parquet
+data/lineup_stats.*
+data/season_games.csv
+data/clutch_stats.csv
+data/fatigue.csv
+data/player_clutch_stats.*
+data/comeback_profiles.*
+data/pace_profiles.csv
+data/markets/
+# v1 models (superseded by v2)
+data/margin_model.json
+data/win_probability_model.json
+data/feature_columns.json
 
 # ── Rust ────────────────────────────────────────
 target/
