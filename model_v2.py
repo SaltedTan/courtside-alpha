@@ -4,6 +4,7 @@ NBA Live Betting Model v2
 Market-aware training with rolling team form and sequence features.
 """
 
+import os
 import pandas as pd
 import numpy as np
 import json
@@ -1111,7 +1112,71 @@ def save_all_models(models, feature_sets):
 
 
 # ══════════════════════════════════════════════
-# SECTION 12: RUN EVERYTHING
+# SECTION 12: MERGE LIVE OBSERVATIONS
+# ══════════════════════════════════════════════
+
+def merge_live_observations(df, db_path="live_observations.sqlite"):
+    """
+    Load live observations and merge with historical OOF data.
+
+    Key advantage: live snapshots have real Polymarket odds (MARKET_PROB)
+    instead of proxy model estimates. For these rows we set:
+      OOF_PROXY_PROB = MARKET_PROB   (real market pricing)
+      OOF_LIVE_PROB  = model's actual inference-time prediction
+      OOF_MARGIN_PRED = model's actual margin prediction
+
+    These are genuinely out-of-sample because the model was trained
+    before these games happened.
+    """
+    from recorder import export_for_training
+
+    live = export_for_training(db_path)
+    if live.empty:
+        return df
+
+    # Only use snapshots with real market odds (that's the whole point)
+    live = live[live["MARKET_PROB"].notna()].copy()
+    if live.empty:
+        print("  No live observations with market odds — skipping")
+        return df
+
+    n_games = live["GAME_ID"].nunique()
+    print(f"\n  Merging {len(live)} live observations from {n_games} games "
+          f"(with real market odds)")
+
+    # Set OOF columns from real values
+    live["OOF_PROXY_PROB"] = live["MARKET_PROB"]
+    live["OOF_LIVE_PROB"] = live["RECORDED_MODEL_PROB"]
+    live["OOF_MARGIN_PRED"] = live["RECORDED_MARGIN"]
+
+    # Compute sample weights (live games are most recent -> highest weight)
+    live["GAME_DATE"] = pd.to_datetime(live["RECORDED_AT"]).dt.normalize()
+    max_date = max(df["GAME_DATE"].max(), live["GAME_DATE"].max())
+    live["DAYS_AGO"] = (max_date - live["GAME_DATE"]).dt.days
+    live["SAMPLE_WEIGHT"] = np.exp(-0.03 * live["DAYS_AGO"])
+
+    # Apply clutch/close-late boosts
+    if "IS_CLUTCH" in live.columns:
+        live.loc[live["IS_CLUTCH"] == 1, "SAMPLE_WEIGHT"] *= 1.5
+    if "IS_CLOSE_LATE" in live.columns:
+        live.loc[live["IS_CLOSE_LATE"] == 1, "SAMPLE_WEIGHT"] *= 1.2
+
+    # Align columns: ensure all historical columns exist in live data
+    for col in df.columns:
+        if col not in live.columns:
+            live[col] = 0
+
+    # Keep only columns from historical data (maintains column order)
+    live = live[df.columns].copy()
+
+    result = pd.concat([df, live], ignore_index=True)
+    print(f"  Total training data: {len(result)} snapshots "
+          f"({len(df)} historical + {len(live)} live)")
+    return result
+
+
+# ══════════════════════════════════════════════
+# SECTION 13: RUN EVERYTHING
 # ══════════════════════════════════════════════
 
 if __name__ == "__main__":
@@ -1156,6 +1221,10 @@ if __name__ == "__main__":
     # ── Out-of-fold predictions (the key fix) ──
     print("\n[8/10] Generating out-of-fold predictions...")
     df = generate_oof_predictions(df, pregame_features, live_features)
+
+    # ── Merge live observations (real market odds for edge training) ──
+    if os.path.exists("live_observations.sqlite"):
+        df = merge_live_observations(df)
 
     # ── Edge computation ──
     print("\n[9/10] Computing edges and training edge model...")

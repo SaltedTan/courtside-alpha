@@ -23,6 +23,7 @@ from nba_api.live.nba.endpoints import boxscore as live_boxscore
 
 from features import FeatureEngine, DATA_DIR
 from market_data import fetch_polymarket_game_odds
+import recorder
 
 
 # ══════════════════════════════════════════════
@@ -96,6 +97,7 @@ class GameTracker:
     def __init__(self):
         self.games = {}  # game_id -> state dict
         self.last_poll = None
+        self._completed = set()  # game_ids already finalized
 
     def update_from_scoreboard(self, scoreboard_data):
         """Parse live scoreboard and update tracked games."""
@@ -277,6 +279,29 @@ class GameTracker:
                     and p.get("statistics", {}).get("fieldGoalsPercentage", 0) < 0.3
                 )
                 state[f"{prefix}_cold_shooters"] = cold_players
+
+    def check_completed_games(self, scoreboard_data):
+        """
+        Check if any tracked games have completed (status=3).
+        Returns list of (game_id, final_home_score, final_away_score).
+        """
+        completed = []
+        try:
+            games_list = scoreboard_data.get("scoreboard", {}).get("games", [])
+        except Exception:
+            return completed
+
+        for game in games_list:
+            game_id = game.get("gameId", "")
+            status = game.get("gameStatus", 0)
+
+            if status == 3 and game_id in self.games and game_id not in self._completed:
+                home_score = int(game.get("homeTeam", {}).get("score", 0))
+                away_score = int(game.get("awayTeam", {}).get("score", 0))
+                completed.append((game_id, home_score, away_score))
+                self._completed.add(game_id)
+
+        return completed
 
     def get_game_state(self, game_id):
         """Return current state for a game."""
@@ -514,6 +539,20 @@ async def poll_live_games():
 
                 latest_predictions[game_id] = payload
 
+                # Record observation for future retraining
+                recorder.record_snapshot(
+                    game_id=game_id,
+                    game_state=state,
+                    predictions=predictions,
+                    market_odds={
+                        "polymarket_prob": market_prob,
+                        "volume": market.get("volume") if market else None,
+                        "spread": market.get("spread") if market else None,
+                        "total": market.get("total") if market else None,
+                    } if market_prob is not None else None,
+                    feature_vector=features,
+                )
+
                 # Log signals
                 home = state["home_tricode"]
                 away = state["away_tricode"]
@@ -533,6 +572,17 @@ async def poll_live_games():
                           f"Edge: {edge_pct:.1f}% (proxy) | Conf: {conf:.1f}% | "
                           f"Signals: {len(signals)}")
 
+            # Check for completed games and finalize outcomes
+            completed = tracker.check_completed_games(sb_data)
+            for gid, final_home, final_away in completed:
+                winner = recorder.finalize_game(gid, final_home, final_away)
+                gs = tracker.get_game_state(gid)
+                h = gs["home_tricode"] if gs else "?"
+                a = gs["away_tricode"] if gs else "?"
+                w = h if winner else a
+                print(f"  FINAL: {h} {final_home} - {a} {final_away} | "
+                      f"{w} wins (outcome recorded)")
+
         except Exception as e:
             print(f"  Polling error: {e}")
 
@@ -550,6 +600,7 @@ async def lifespan(app: FastAPI):
 
     feature_engine = FeatureEngine()
     models = ModelSuite()
+    recorder.init_db()
 
     polling_active = True
     game_task = asyncio.create_task(poll_live_games())
@@ -651,6 +702,12 @@ async def get_market_comparison():
         "market_odds_available": len(latest_market_odds),
         "games": comparisons,
     }
+
+
+@app.get("/recorder")
+async def recorder_stats():
+    """Live observation recording stats."""
+    return recorder.get_stats()
 
 
 @app.get("/health")

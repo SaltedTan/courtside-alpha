@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import recorder; print\\(''recorder imports OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''server.py''\\).read\\(\\)\\); print\\(''server.py syntax OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''model_v2.py''\\).read\\(\\)\\); print\\(''model_v2.py syntax OK''\\)\")"
+    ]
+  }
+}

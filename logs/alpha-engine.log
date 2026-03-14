@@ -5,30 +5,46 @@
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
         
   @app.on_event("startup")
-INFO:     Started server process [39703]
+INFO:     Started server process [51616]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
 FeatureEngine initialized:
   30 team profiles
-  188 live features expected
+  265 live features expected
   155 pregame features expected
 [alpha-engine] Loading v2 models...
 [alpha-engine] All v2 models loaded.
-INFO:     127.0.0.1:64946 - "GET /health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65103 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65157 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65163 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65165 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65165 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65165 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65165 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65168 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65170 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65170 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65170 - "POST /predict HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65177 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49647 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49647 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49649 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49769 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49771 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49769 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49771 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49798 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49803 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49803 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49798 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49851 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49853 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49900 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49902 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49922 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49924 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49922 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49924 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49922 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49924 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49922 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49924 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49963 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49965 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49994 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49996 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49994 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49996 - "POST /predict HTTP/1.1" 200 OK
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [39703]
+INFO:     Finished server process [51616]

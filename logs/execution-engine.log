@@ -1,4 +1,3 @@
-   Compiling execution-engine v0.1.0 (/Users/masamiyoshida/Documents/unihack/execution-engine)
 warning: field `game_start_time` is never read
    --> src/main.rs:275:5
     |
@@ -24,537 +23,512 @@ warning: fields `maker_amount` and `taker_amount` are never read
    |         ^^^^^^^^^^^^
 
 warning: `execution-engine` (bin "execution-engine") generated 2 warnings
-    Finished `release` profile [optimized] target(s) in 3.84s
+    Finished `release` profile [optimized] target(s) in 0.18s
      Running `target/release/execution-engine`
-[2m2026-03-14T11:32:14.663033Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m NBA Execution Engine v2 (testnet signing) starting…
-[2m2026-03-14T11:32:14.663151Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Test wallet address : 0xe0d46b2474bfbac1ee2b467ffd2027fcdb9fc00a
-[2m2026-03-14T11:32:14.663165Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Chain               : Polygon (ID 137) — no real funds
-[2m2026-03-14T11:32:14.664068Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m SQLite ready at ../trades.sqlite
-[2m2026-03-14T11:32:14.664207Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Wallet state loaded: address=0xe0d46b2474bfbac1ee2b467ffd2027fcdb9fc00a  balance=$9600.00
-[2m2026-03-14T11:32:14.687894Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m HTTP server listening on 0.0.0.0:4000
-[2m2026-03-14T11:32:14.691758Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Alpha Engine healthy: {"feature_engine_ready":true,"model_loaded":true,"status":"ok","version":"2.0"}
-[2m2026-03-14T11:32:16.115555Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Nets vs. 76ers"  start=2026-03-14 17:00:00+00  away=Nets (24%)  home=76ers (76%)
-[2m2026-03-14T11:32:16.115598Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Bucks vs. Hawks"  start=2026-03-14 19:00:00+00  away=Bucks (26%)  home=Hawks (74%)
-[2m2026-03-14T11:32:16.115610Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Wizards vs. Celtics"  start=2026-03-14 22:00:00+00  away=Wizards (6%)  home=Celtics (94%)
-[2m2026-03-14T11:32:16.115622Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Magic vs. Heat"  start=2026-03-15 00:00:00+00  away=Magic (40%)  home=Heat (60%)
-[2m2026-03-14T11:32:16.115634Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Hornets vs. Spurs"  start=2026-03-14 19:30:00+00  away=Hornets (32%)  home=Spurs (68%)
-[2m2026-03-14T11:32:16.115647Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Nuggets vs. Lakers"  start=2026-03-15 00:30:00+00  away=Nuggets (57%)  home=Lakers (42%)
-[2m2026-03-14T11:32:16.115661Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Kings vs. Clippers"  start=2026-03-15 02:30:00+00  away=Kings (12%)  home=Clippers (88%)
-[2m2026-03-14T11:32:16.115666Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Timberwolves vs. Thunder"  start=2026-03-15 17:00:00+00  away=Timberwolves (27%)  home=Thunder (73%)
-[2m2026-03-14T11:32:16.115670Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Mavericks vs. Cavaliers"  start=2026-03-15 19:30:00+00  away=Mavericks (12%)  home=Cavaliers (88%)
-[2m2026-03-14T11:32:16.115675Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Pistons vs. Raptors"  start=2026-03-15 19:30:00+00  away=Pistons (60%)  home=Raptors (40%)
-[2m2026-03-14T11:32:16.115679Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Pacers vs. Bucks"  start=2026-03-15 19:30:00+00  away=Pacers (36%)  home=Bucks (64%)
-[2m2026-03-14T11:32:16.115700Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Trail Blazers vs. 76ers"  start=2026-03-15 22:00:00+00  away=Trail Blazers (69%)  home=76ers (31%)
-[2m2026-03-14T11:32:16.115705Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Warriors vs. Knicks"  start=2026-03-16 00:00:00+00  away=Warriors (24%)  home=Knicks (76%)
-[2m2026-03-14T11:32:16.115708Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Jazz vs. Kings"  start=2026-03-16 02:00:00+00  away=Jazz (48%)  home=Kings (52%)
-[2m2026-03-14T11:32:16.115726Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Found 14 live NBA game moneyline markets
-[2m2026-03-14T11:32:16.115728Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m (Re)connecting WebSocket ingestion loop…
-[2m2026-03-14T11:32:16.115760Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Connecting to Polymarket WebSocket — 28 tokens / 14 markets
-[2m2026-03-14T11:32:16.910658Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m WebSocket connected
-[2m2026-03-14T11:32:16.910719Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Subscription sent — tracking 0 open positions
-[2m2026-03-14T11:32:41.918935Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:32:45.511162Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:33:01.344717Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:33:01.358625Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
-[2m2026-03-14T11:33:41.242457Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:33:41.253115Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.449 found but confidence too low (22.8%) — skipping
-[2m2026-03-14T11:33:49.734920Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:33:50.051769Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:33:52.062813Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:33:52.912946Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:33:56.674806Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:33:59.888339Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:05.046456Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:25.874277Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:34:25.890242Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
-[2m2026-03-14T11:34:26.425023Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:34:33.595336Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:34:33.607275Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.449 found but confidence too low (22.8%) — skipping
-[2m2026-03-14T11:34:33.995331Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:34:34.005011Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.096 found but confidence too low (51.8%) — skipping
-[2m2026-03-14T11:34:34.132347Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:34:34.141915Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
-[2m2026-03-14T11:34:34.237682Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:34:34.247024Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m EDGE FOUND  game="Kings vs. Clippers"  home=Clippers  edge=+0.078  conf=86.0%  action=BUY_CLIPPERS
-[2m2026-03-14T11:34:34.249353Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m TRADE SIGNED  id=57a1031d-8d90-44f4-a31e-6abc0c268141  game=0x671b141d1a220a996d5c7074e155edb1b3c82d61ecdee605ebe5fbe7e540d89a  action=BUY_CLIPPERS  market=0.880  model=0.958  edge=+0.078  stake=50 USDC  hash=0x9e06a39557
-[2m2026-03-14T11:34:34.249382Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Position opened — 1 open positions total
-[2m2026-03-14T11:34:34.704638Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:34:35.464540Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:36.148276Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:36.462280Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:38.388100Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:39.895066Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:34:40.089671Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:34:40.843281Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:34:41.756632Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:34:41.771936Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:34:44.705429Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:34:44.712491Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
-[2m2026-03-14T11:34:45.012878Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:34:57.162002Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:34:57.173017Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m EDGE FOUND  game="Nets vs. 76ers"  home=76ers  edge=-0.074  conf=78.2%  action=BUY_NETS
-[2m2026-03-14T11:34:57.174848Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m TRADE SIGNED  id=094ea40b-4dca-4f08-ba7b-7d9bfd1049cd  game=0x47d3f02af9563b3a1c718049bff511f45e2564d893c2e52726b31495c5509fc5  action=BUY_NETS  market=0.770  model=0.696  edge=-0.074  stake=50 USDC  hash=0x42be0d6135
-[2m2026-03-14T11:34:57.174883Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Position opened — 2 open positions total
-[2m2026-03-14T11:34:59.228817Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:34:59.235983Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.449 found but confidence too low (22.8%) — skipping
-[2m2026-03-14T11:35:00.119218Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:35:00.475014Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:35:00.485538Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
-[2m2026-03-14T11:35:01.296433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:35:04.752299Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:35:06.035443Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:35:06.113243Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:35:13.644799Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:35:14.494699Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:35:14.568207Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:35:25.731096Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:35:27.806754Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:35:47.844639Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T11:35:48.468097Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:35:48.468697Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:35:49.925014Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:35:49.925746Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:35:52.729815Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:35:53.225970Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:35:53.485196Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:35:54.436583Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:35:54.522543Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:35:57.962606Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:35:57.963656Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:35:58.938767Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
-[2m2026-03-14T11:36:21.800230Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:36:22.444816Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:36:22.753465Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:36:24.970223Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:36:31.347294Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:36:31.348437Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:36:34.982199Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:36:34.982999Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:36:44.550600Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:36:45.431817Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:36:45.498466Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:36:54.395283Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:36:55.051186Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:36:55.131117Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:37:11.545932Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:37:12.571433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:37:21.822999Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:37:21.823617Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:37:23.483391Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:37:24.399758Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:37:24.399902Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:37:51.484218Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:38:38.506605Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:38:38.514018Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:38:39.549399Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:38:39.550927Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:38:39.560981Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:38:39.602210Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:38:56.997512Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:38:59.001150Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:39:27.007094Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:39:31.056494Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:39:31.057557Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:39:31.540748Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:39:31.541386Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:40:09.442259Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:40:09.442811Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:40:13.811032Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:40:20.630123Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:40:20.631248Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:40:31.721549Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:40:33.672992Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:40:46.478181Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:40:46.479316Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:40:47.837421Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:40:47.838688Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:40:51.608871Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:41:21.070324Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:41:21.072421Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:41:30.808537Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
-[2m2026-03-14T11:41:30.808786Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:41:45.578779Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:41:45.579176Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:41:47.065214Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:41:47.674429Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:41:47.868104Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
-[2m2026-03-14T11:42:02.864512Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:42:02.867005Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:42:04.854366Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:42:08.792087Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:42:27.556296Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:42:27.774102Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:28.410011Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:42:29.032605Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:31.854909Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:32.608887Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:42:32.609221Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:42:40.044953Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:42.213110Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:42:43.445934Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:42:43.446732Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:42:46.318962Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:51.534431Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:54.397884Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:42:57.234478Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:42:57.806520Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:43:02.278527Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:43:02.278827Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:43:04.170658Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:43:42.808812Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:43:55.958119Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:43:55.958496Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:44:10.473157Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Cavaliers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:44:10.473858Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:44:11.086394Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Mavericks  is_home=false  market_prob=0.130
-[2m2026-03-14T11:44:15.624768Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:44:21.374862Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:44:41.970219Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
-[2m2026-03-14T11:44:44.029275Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:44:46.838490Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:45:00.797607Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
-[2m2026-03-14T11:45:09.791503Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
-[2m2026-03-14T11:45:10.038897Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
-[2m2026-03-14T11:45:15.059881Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:45:15.060735Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:45:17.477757Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:45:17.478341Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:45:50.783730Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:45:50.784257Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:46:38.307020Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:46:38.308126Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:46:45.323168Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
-[2m2026-03-14T11:46:46.418804Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:46:46.420056Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:47:02.723755Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
-[2m2026-03-14T11:47:05.718079Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.050
-[2m2026-03-14T11:47:27.708533Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
-[2m2026-03-14T11:47:35.438813Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:47:35.439615Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:47:43.265373Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:47:43.266044Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:32.006113Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:48:32.008096Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:36.744148Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:48:38.814676Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:48:38.814997Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:48.583126Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:48:48.584045Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:54.388690Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:48:54.388998Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:55.381792Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:48:55.382147Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:59.055074Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:48:59.055875Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:48:59.339911Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:48:59.340561Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:00.077062Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:49:00.077648Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:04.465384Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:49:04.465770Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:04.735087Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
-[2m2026-03-14T11:49:04.735425Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:10.522410Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:49:10.523693Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:18.120008Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:49:18.120707Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:19.436872Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:49:19.437191Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:19.610357Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.260
-[2m2026-03-14T11:49:20.016693Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:49:20.017516Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:20.442338Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.260
-[2m2026-03-14T11:49:21.903252Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:49:21.903677Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:22.565466Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.260
-[2m2026-03-14T11:49:24.362207Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.260
-[2m2026-03-14T11:49:35.411131Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:49:35.411490Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:36.169154Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
-[2m2026-03-14T11:49:38.902010Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
-[2m2026-03-14T11:49:39.924788Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T11:49:39.925458Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:41.616836Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T11:49:41.617806Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:49:43.403713Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:50:00.368732Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T11:50:00.370116Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:08.400691Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:50:08.401680Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:16.867154Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:50:16.868237Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:27.582228Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:27.583091Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:27.738712Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:27.739607Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:27.771148Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:27.771905Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:28.000920Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:28.002131Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:28.002651Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:28.003317Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:29.394778Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:29.395070Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:29.596165Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T11:50:35.011728Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T11:50:35.509762Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:50:35.510091Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:37.396630Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T11:50:37.396855Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:48.176678Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:48.178131Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:58.514479Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:58.515416Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:50:59.444675Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:50:59.445322Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:00.467179Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:00.467458Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:01.414722Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:01.415257Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:02.262474Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:02.263138Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:03.031999Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:03.033072Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:04.270613Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:04.271446Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:06.981274Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:06.982671Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:15.667176Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T11:51:16.981534Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T11:51:16.982412Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:19.740937Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:19.741339Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:25.683848Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:25.684209Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:29.245185Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T11:51:33.067484Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:33.067818Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:37.620278Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
-[2m2026-03-14T11:51:41.911633Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.600
-[2m2026-03-14T11:51:41.912730Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:44.024813Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:51:48.192884Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T11:51:48.194109Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:49.518846Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:51:49.519950Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:51:57.132228Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:51:57.132879Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:52:07.976149Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T11:52:08.554191Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:52:08.554562Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:52:34.221337Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:52:34.223270Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:52:46.291368Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T11:53:06.170603Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:53:06.171570Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:53:24.280129Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:53:24.280993Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:53:41.888038Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:53:41.888921Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:54:02.624467Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T11:54:02.952950Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:54:02.954148Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:54:07.183311Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:54:07.184105Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:54:42.535543Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:54:42.536645Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:54:52.580552Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:54:52.581678Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:55:13.697799Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T11:55:14.460433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:55:14.461600Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:55:27.543780Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.230
-[2m2026-03-14T11:55:50.296263Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.230
-[2m2026-03-14T11:55:50.862446Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:55:50.863360Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:56:06.202842Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:56:06.204654Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:56:08.567991Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
-[2m2026-03-14T11:56:49.235600Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:56:49.237847Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:57:19.946268Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:57:19.947284Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:57:26.366687Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
-[2m2026-03-14T11:58:01.280790Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:58:01.281618Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:58:19.656568Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
-[2m2026-03-14T11:58:19.658722Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:58:24.107954Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:58:24.109247Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:58:27.574355Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:58:32.236469Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
-[2m2026-03-14T11:58:40.132854Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T11:58:40.133835Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:58:42.693202Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:58:42.693471Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:58:54.791231Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:58:54.792704Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:58:58.324988Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
-[2m2026-03-14T11:59:00.377402Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T11:59:02.090955Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T11:59:03.426145Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T11:59:03.426926Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:03.584868Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:59:03.585686Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:08.715287Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:59:08.715680Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:17.199615Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:59:17.201330Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:17.500563Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T11:59:17.501100Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:35.143213Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T11:59:36.284784Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T11:59:36.286462Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:55.401328Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T11:59:55.402597Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T11:59:56.581111Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T11:59:56.581631Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:00:07.624749Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:00:27.543592Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T12:00:27.544844Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:00:43.143662Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
-[2m2026-03-14T12:00:43.335184Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:00:43.336001Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:00:43.496944Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:00:43.497518Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:00:50.208266Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:00:53.759846Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
-[2m2026-03-14T12:00:56.615106Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.760
-[2m2026-03-14T12:00:56.616334Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:00.986376Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:01:00.987174Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:01.336887Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.940
-[2m2026-03-14T12:01:01.338370Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:04.708282Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.600
-[2m2026-03-14T12:01:04.709115Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:05.081997Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:01:05.082911Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:09.378406Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T12:01:09.380196Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:13.168291Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T12:01:13.169100Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:14.668204Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.870
-[2m2026-03-14T12:01:14.668494Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:19.343087Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:01:21.145494Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
-[2m2026-03-14T12:01:21.146870Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:24.504179Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:01:51.339856Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:01:51.429825Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:01:51.430121Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:52.990267Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:01:52.991775Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:01:53.982578Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:01:58.839692Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:01:58.840009Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:02:04.974624Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:02:04.975830Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:02:15.055130Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:02:15.055741Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:02:16.672688Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:02:33.004811Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:02:58.351300Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:02:58.351843Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:03:21.077128Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:03:21.077607Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:03:36.442127Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T12:03:36.443341Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:03:54.877738Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:03:57.115712Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:03:57.116018Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:04:18.022868Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T12:04:18.023852Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:04:39.815814Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:04:39.816533Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:04:49.293239Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:04:49.294151Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:05:18.098200Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T12:05:18.099026Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:05:24.392758Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:05:39.288526Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
-[2m2026-03-14T12:05:39.289229Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:05:53.122315Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:05:53.122649Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:10.027333Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:06:10.029720Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:15.294633Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.240
-[2m2026-03-14T12:06:16.396222Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:06:17.294617Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:06:17.298992Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:17.482292Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:06:17.483259Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:18.222311Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T12:06:18.222625Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:30.617071Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:06:30.617341Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:31.138824Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.240
-[2m2026-03-14T12:06:37.893239Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T12:06:38.770046Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:06:38.770985Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:49.031673Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T12:06:49.033686Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:49.981100Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:06:49.982106Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:50.655266Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T12:06:51.289813Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:06:51.290513Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:06:56.456257Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T12:06:56.457101Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:07:04.430847Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
-[2m2026-03-14T12:07:18.165040Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
-[2m2026-03-14T12:07:18.165548Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:07:21.616688Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Warriors vs. Knicks"  team=Warriors  is_home=false  market_prob=0.260
-[2m2026-03-14T12:07:28.376792Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:07:28.377645Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:07:41.470988Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:07:41.471317Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:07:48.888143Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:07:48.888469Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:07:55.365015Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:07:55.365346Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:08:43.659127Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:08:43.660209Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:08:46.192864Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:08:46.193639Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:08:58.540472Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:08:58.542293Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:08:59.091613Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T12:08:59.092641Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:09:45.308771Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Cavaliers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:09:45.309886Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:09:58.424898Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:09:58.425579Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:05.956742Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:10:05.957042Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:06.518133Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.740
-[2m2026-03-14T12:10:06.518434Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:09.351048Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
-[2m2026-03-14T12:10:09.352237Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:12.360615Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:10:14.323040Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
-[2m2026-03-14T12:10:14.324374Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:15.528560Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:10:17.995426Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
-[2m2026-03-14T12:10:17.996732Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:18.882046Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:10:26.204203Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
-[2m2026-03-14T12:10:26.204892Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:45.991610Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
-[2m2026-03-14T12:10:48.525047Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
-[2m2026-03-14T12:10:49.337512Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
-[2m2026-03-14T12:10:49.864006Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:10:49.864359Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:53.244021Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:10:53.244290Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:10:55.507874Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
-[2m2026-03-14T12:10:57.953135Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
-[2m2026-03-14T12:10:57.954261Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:11:10.021594Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:11:11.927474Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
-[2m2026-03-14T12:11:43.160953Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
-[2m2026-03-14T12:11:43.713761Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:11:43.714801Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:11:48.186577Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
-[2m2026-03-14T12:11:48.186858Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
-[2m2026-03-14T12:11:53.502972Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
-[2m2026-03-14T12:12:08.241508Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:16:04.195354Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m NBA Execution Engine v2 (testnet signing) starting…
+[2m2026-03-14T12:16:04.195482Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Test wallet address : 0xe0d46b2474bfbac1ee2b467ffd2027fcdb9fc00a
+[2m2026-03-14T12:16:04.195499Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Chain               : Polygon (ID 137) — no real funds
+[2m2026-03-14T12:16:04.196210Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m SQLite ready at ../trades.sqlite
+[2m2026-03-14T12:16:04.196341Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Wallet state loaded: address=0xe0d46b2474bfbac1ee2b467ffd2027fcdb9fc00a  balance=$9400.00
+[2m2026-03-14T12:16:04.199163Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m HTTP server listening on 0.0.0.0:4000
+[2m2026-03-14T12:16:04.199381Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine unreachable (error sending request for url (http://127.0.0.1:8001/health)) — naive prior will be used
+[2m2026-03-14T12:16:05.341312Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Nets vs. 76ers"  start=2026-03-14 17:00:00+00  away=Nets (24%)  home=76ers (76%)
+[2m2026-03-14T12:16:05.341356Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Bucks vs. Hawks"  start=2026-03-14 19:00:00+00  away=Bucks (24%)  home=Hawks (76%)
+[2m2026-03-14T12:16:05.341374Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Wizards vs. Celtics"  start=2026-03-14 22:00:00+00  away=Wizards (6%)  home=Celtics (94%)
+[2m2026-03-14T12:16:05.341390Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Magic vs. Heat"  start=2026-03-15 00:00:00+00  away=Magic (40%)  home=Heat (60%)
+[2m2026-03-14T12:16:05.341406Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Hornets vs. Spurs"  start=2026-03-14 19:30:00+00  away=Hornets (32%)  home=Spurs (68%)
+[2m2026-03-14T12:16:05.341422Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Nuggets vs. Lakers"  start=2026-03-15 00:30:00+00  away=Nuggets (58%)  home=Lakers (42%)
+[2m2026-03-14T12:16:05.341437Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Kings vs. Clippers"  start=2026-03-15 02:30:00+00  away=Kings (12%)  home=Clippers (88%)
+[2m2026-03-14T12:16:05.341443Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Timberwolves vs. Thunder"  start=2026-03-15 17:00:00+00  away=Timberwolves (27%)  home=Thunder (73%)
+[2m2026-03-14T12:16:05.341448Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Mavericks vs. Cavaliers"  start=2026-03-15 19:30:00+00  away=Mavericks (12%)  home=Cavaliers (88%)
+[2m2026-03-14T12:16:05.341454Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Pistons vs. Raptors"  start=2026-03-15 19:30:00+00  away=Pistons (60%)  home=Raptors (40%)
+[2m2026-03-14T12:16:05.341458Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Pacers vs. Bucks"  start=2026-03-15 19:30:00+00  away=Pacers (36%)  home=Bucks (64%)
+[2m2026-03-14T12:16:05.341464Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Trail Blazers vs. 76ers"  start=2026-03-15 22:00:00+00  away=Trail Blazers (69%)  home=76ers (31%)
+[2m2026-03-14T12:16:05.341481Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Warriors vs. Knicks"  start=2026-03-16 00:00:00+00  away=Warriors (26%)  home=Knicks (74%)
+[2m2026-03-14T12:16:05.341487Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Jazz vs. Kings"  start=2026-03-16 02:00:00+00  away=Jazz (48%)  home=Kings (52%)
+[2m2026-03-14T12:16:05.341513Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Found 14 live NBA game moneyline markets
+[2m2026-03-14T12:16:05.341516Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m (Re)connecting WebSocket ingestion loop…
+[2m2026-03-14T12:16:05.341560Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Connecting to Polymarket WebSocket — 28 tokens / 14 markets
+[2m2026-03-14T12:16:06.121583Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m WebSocket connected
+[2m2026-03-14T12:16:06.121738Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Subscription sent — tracking 0 open positions
+[2m2026-03-14T12:16:07.022321Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
+[2m2026-03-14T12:16:07.029077Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.364 found but confidence too low (13.8%) — skipping
+[2m2026-03-14T12:16:42.939352Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:16:42.950959Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m EDGE FOUND  game="Bucks vs. Hawks"  home=Hawks  edge=+0.159  conf=89.1%  action=BUY_HAWKS
+[2m2026-03-14T12:16:42.952557Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m TRADE SIGNED  id=102f7070-fc67-47eb-b5f6-74dcfd9cdb94  game=0x1813f5f26f269a677d6d72a5502d2f0f008426374a6ecaef982717574f29bc16  action=BUY_HAWKS  market=0.760  model=0.919  edge=+0.159  stake=50 USDC  hash=0x4b53dbf8a8
+[2m2026-03-14T12:16:42.952566Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Position opened — 1 open positions total
+[2m2026-03-14T12:16:43.344009Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:16:43.355350Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:16:50.383413Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:16:50.389847Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:16:51.379908Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:16:51.388610Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:00.171771Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:17:08.025650Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:08.031274Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:21.615418Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:17:21.622622Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.354 found but confidence too low (13.8%) — skipping
+[2m2026-03-14T12:17:27.185852Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:27.193303Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:30.740889Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:30.747535Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:31.257875Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:17:31.264688Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.186 found but confidence too low (44.0%) — skipping
+[2m2026-03-14T12:17:34.444154Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:17:34.625606Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:17:40.741032Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:17:40.749866Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m EDGE FOUND  game="Kings vs. Clippers"  home=Clippers  edge=+0.098  conf=91.7%  action=BUY_CLIPPERS
+[2m2026-03-14T12:17:40.751682Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m TRADE SIGNED  id=02811739-e179-4b5f-84e8-a796373f79ec  game=0x671b141d1a220a996d5c7074e155edb1b3c82d61ecdee605ebe5fbe7e540d89a  action=BUY_CLIPPERS  market=0.880  model=0.978  edge=+0.098  stake=50 USDC  hash=0xe1811a9039
+[2m2026-03-14T12:17:40.751699Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Position opened — 2 open positions total
+[2m2026-03-14T12:17:47.581935Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:17:50.163433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:50.167591Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+o low (39.6%) — skipping
+[2m2026-03-14T12:16:51.388751Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:16:51.395416Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:00.181223Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:17:08.035062Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:08.040624Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:21.625720Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:17:21.632593Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.354 found but confidence too low (13.8%) — skipping
+[2m2026-03-14T12:17:27.195877Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:27.202107Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:30.752577Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:30.758423Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:31.268230Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:17:31.273853Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.186 found but confidence too low (44.0%) — skipping
+[2m2026-03-14T12:17:34.451483Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:17:34.630779Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:17:40.752940Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:17:47.592793Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:17:50.173036Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:17:50.176709Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.278 found but confidence too low (39.6%) — skipping
+[2m2026-03-14T12:17:52.556009Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:18:02.224181Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
+[2m2026-03-14T12:18:02.224739Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:18:05.618784Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:18:05.619724Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:18:08.394561Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:18:08.395291Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:18:09.015945Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:18:10.627154Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:18:10.627965Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:18:44.225133Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:18:48.581484Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:18:57.631827Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:18:57.632422Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:19:08.952474Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
+[2m2026-03-14T12:19:15.948926Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:19:28.705209Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:19:28.707158Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:19:30.683377Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:19:45.619694Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:19:45.620540Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:19:46.396528Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:19:46.397235Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:19:46.683705Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:19:47.150937Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:19:47.151550Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:19:47.248680Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:19:47.249799Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:19:57.293057Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=76ers  is_home=true  market_prob=0.310
+[2m2026-03-14T12:19:57.293687Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:06.092549Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:20:06.094892Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:26.600881Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:20:26.601834Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:41.046453Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Cavaliers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:20:41.046968Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:52.913852Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:20:52.914365Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:54.513264Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:20:54.513756Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:54.898165Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:20:57.230208Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:20:57.231078Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:57.476805Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:20:57.477633Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:20:57.477729Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:20:58.583857Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:20:58.584562Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:06.324682Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:21:09.365209Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:21:09.366112Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:20.220882Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:21:20.394447Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:21:20.496646Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:21:20.496772Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:21:20.629070Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:21:21.215181Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:21:26.348398Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:21:26.349780Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:27.447834Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:21:29.188111Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:21:29.189240Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:34.069223Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:21:34.070481Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:38.280857Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:21:38.658823Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
+[2m2026-03-14T12:21:38.659443Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:42.926549Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:21:43.231418Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:21:44.926993Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:21:45.417433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:21:48.833037Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:21:48.833460Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:54.061724Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:21:54.063005Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:21:54.641882Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:22:01.853351Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
+[2m2026-03-14T12:22:01.854893Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:22:04.997278Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:22:10.349189Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Cavaliers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:22:10.351022Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:22:16.275174Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:22:16.276318Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:22:31.970842Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:22:40.983034Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:22:40.984286Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:22:42.252620Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:22:42.727128Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:22:44.541706Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:22:44.542831Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:22:46.514606Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:23:00.206040Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:23:00.207214Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:03.227889Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:23:03.228688Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:23:03.230676Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:05.119712Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:23:05.120134Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:05.395375Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:23:05.395747Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:07.477563Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:23:07.477984Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:11.757931Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:23:11.955886Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:23:13.983770Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:23:14.422451Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.660
+[2m2026-03-14T12:23:14.423447Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:17.192718Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:23:17.193349Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:22.761147Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:23:22.762440Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:22.981802Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:23:23.425490Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T12:23:24.231784Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:23:25.159570Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:23:26.560865Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:23:26.561729Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:30.690613Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:23:30.690877Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:36.171035Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:23:36.173118Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:36.433449Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:23:42.306649Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:23:42.595021Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:23:45.449121Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:23:45.449822Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:47.294151Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:23:47.294848Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:47.946987Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:23:51.085641Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:23:51.085946Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:53.300491Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:23:54.111368Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:23:55.232672Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:23:56.298815Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:23:56.300000Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:23:58.713158Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:23:59.195564Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:23:59.196361Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:01.410425Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
+[2m2026-03-14T12:24:04.416207Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=Trail Blazers  is_home=false  market_prob=0.690
+[2m2026-03-14T12:24:08.948451Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:24:08.951634Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:09.568624Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:24:09.569222Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:12.621120Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:12.621409Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:14.129362Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:24:14.130521Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:14.538247Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:24:15.773987Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Pacers vs. Bucks"  team=Bucks  is_home=true  market_prob=0.650
+[2m2026-03-14T12:24:15.775188Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:16.320640Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:24:16.320944Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:22.004251Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Pistons vs. Raptors"  team=Pistons  is_home=false  market_prob=0.600
+[2m2026-03-14T12:24:25.716054Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:25.716546Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:26.082164Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:26.082789Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:26.192220Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:26.192945Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:27.395370Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=Trail Blazers  is_home=false  market_prob=0.700
+[2m2026-03-14T12:24:34.807469Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Warriors vs. Knicks"  team=Knicks  is_home=true  market_prob=0.770
+[2m2026-03-14T12:24:34.809110Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:37.774380Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:24:37.775508Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:41.452241Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:41.452772Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:41.634368Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:41.635811Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:42.788263Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:24:47.104835Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Jazz vs. Kings"  team=Kings  is_home=true  market_prob=0.520
+[2m2026-03-14T12:24:47.107258Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:49.911648Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:24:56.111300Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:24:56.112526Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:24:57.775268Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:24:57.775904Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:00.187086Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:25:00.188340Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:06.613130Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=76ers  is_home=true  market_prob=0.310
+[2m2026-03-14T12:25:06.614453Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:06.909899Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:25:06.911022Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:08.115180Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:25:10.601742Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:25:10.602767Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:19.519398Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:25:19.519717Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:22.711080Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:25:24.749083Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:25:24.750960Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:30.480792Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:25:30.481631Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:31.236470Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:25:31.237336Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:34.494452Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:25:34.495160Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:34.533681Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:25:34.534809Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:34.867831Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:25:34.869334Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:38.570626Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:25:38.571226Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:54.225257Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:25:54.226384Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:25:59.299093Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:25:59.299521Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:06.735775Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:26:06.737410Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:16.837355Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:26:18.296181Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:26:18.296466Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:28.030930Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:26:28.031867Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:28.905729Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:26:28.906043Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:37.691477Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:26:37.692678Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:37.937762Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:26:37.938937Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:58.545079Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:26:58.545404Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:58.919121Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:26:58.919460Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:26:59.804969Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:27:07.397559Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:27:07.398451Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:08.711271Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:27:08.712212Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:13.174198Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:27:13.175068Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:15.158588Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:27:15.159377Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:24.692085Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:27:25.002280Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:27:28.021025Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:27:28.612692Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Pacers vs. Bucks"  team=Bucks  is_home=true  market_prob=0.650
+[2m2026-03-14T12:27:28.613762Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:29.067649Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:27:29.068335Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:37.624299Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:27:37.625030Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:27:54.562552Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:27:54.564524Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:28:20.106218Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:28:20.107005Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:28:43.040806Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:28:43.043051Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:28:45.700422Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:28:45.701251Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:28:50.905197Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:28:50.905709Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:28:51.713849Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:28:51.714199Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:01.876530Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:29:01.877695Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:06.835647Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:29:06.836281Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:13.132512Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:29:13.132924Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:13.623528Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:29:19.443287Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:29:19.443997Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:24.005719Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:29:24.006790Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:24.027352Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:29:25.937686Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:29:25.938908Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:28.768165Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:29:28.768859Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:32.833943Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:29:39.134807Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:29:39.135107Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:41.478848Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:29:41.480008Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:41.480133Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:29:46.679954Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:29:46.681074Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:47.793118Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.240
+[2m2026-03-14T12:29:50.132277Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:29:53.774268Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:29:53.775713Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:29:56.772442Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:29:58.013995Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:29:58.014555Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:01.735344Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:30:01.736119Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:08.237913Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:30:08.238403Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:09.757240Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:30:09.757984Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:11.098550Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Pacers vs. Bucks"  team=Pacers  is_home=false  market_prob=0.360
+[2m2026-03-14T12:30:18.634082Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:30:20.290434Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:30:20.291822Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:21.721643Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:30:21.722067Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:22.675028Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:30:28.833390Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:30:32.825635Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:30:32.826054Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:46.261653Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:30:46.262975Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:52.820297Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:30:52.821102Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:53.075906Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:30:58.414416Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:30:58.415000Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:30:59.400547Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:30:59.401051Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:01.527241Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:31:01.527560Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:02.624985Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:31:02.625208Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:12.543151Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:31:12.543407Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:14.423942Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:31:14.424206Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:21.151028Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:31:21.151940Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:21.617027Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:31:21.619820Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:26.168981Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:31:26.170332Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:29.963102Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:31:29.963411Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:32.559240Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:31:32.561383Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:35.814560Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=76ers  is_home=true  market_prob=0.320
+[2m2026-03-14T12:31:35.815378Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:39.587716Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:31:47.521806Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:31:47.522085Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:31:52.253142Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:31:59.030943Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:32:04.610399Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=76ers  is_home=true  market_prob=0.320
+[2m2026-03-14T12:32:04.610742Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:05.424169Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:32:06.022961Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:32:06.024220Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:07.253384Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:32:07.253792Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:09.315544Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:32:09.315826Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:13.394578Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Trail Blazers vs. 76ers"  team=Trail Blazers  is_home=false  market_prob=0.690
+[2m2026-03-14T12:32:16.380049Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:32:16.380432Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:17.941890Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:32:17.942165Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:17.942184Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:32:17.942324Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:28.727236Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:32:33.213201Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:32:33.213738Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:34.394603Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:32:38.014799Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:32:38.015288Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:38.312630Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:32:38.312930Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:41.444220Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:32:44.322952Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:32:44.347819Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:32:44.348096Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:32:46.576299Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:32:49.303098Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:32:49.303379Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:09.879677Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:33:10.778201Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:33:10.778619Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:13.203661Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:33:13.204260Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:25.399203Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:33:25.399268Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:33:25.453403Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:33:29.280542Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T12:33:29.281665Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:30.385735Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:33:30.386306Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:48.892701Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
+[2m2026-03-14T12:33:49.143917Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:33:49.157794Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Timberwolves vs. Thunder"  team=Thunder  is_home=true  market_prob=0.730
+[2m2026-03-14T12:33:49.158507Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:52.265149Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.940
+[2m2026-03-14T12:33:52.266464Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:33:58.312297Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:34:01.706654Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T12:34:01.707444Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:02.579649Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:34:05.626944Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.590
+[2m2026-03-14T12:34:05.804474Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:34:09.785021Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:34:09.786441Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:13.196754Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.600
+[2m2026-03-14T12:34:13.197609Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:24.148321Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:34:29.814550Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T12:34:30.709110Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:34:33.180143Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:34:33.181382Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:35.457622Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:34:35.458589Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:35.785872Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:34:40.404377Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.760
+[2m2026-03-14T12:34:40.404861Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:40.908804Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:34:40.909781Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:41.222900Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:34:42.637196Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Pacers vs. Bucks"  team=Bucks  is_home=true  market_prob=0.650
+[2m2026-03-14T12:34:42.637976Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:43.170430Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:34:47.783701Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:34:53.609826Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
+[2m2026-03-14T12:34:54.615744Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T12:34:54.616284Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:34:54.875520Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:34:59.301672Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.670
+[2m2026-03-14T12:34:59.303315Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:35:01.901102Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:35:02.614122Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T12:35:08.999346Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.340
+[2m2026-03-14T12:35:11.178434Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T12:35:16.994987Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:35:21.239578Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T12:35:28.737435Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T12:35:28.738282Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:35:35.166264Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T12:35:35.167216Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T12:35:38.568105Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Wizards  is_home=false  market_prob=0.060
