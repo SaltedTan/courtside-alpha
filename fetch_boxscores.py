@@ -22,6 +22,20 @@ import sys
 DATA_DIR = "data"
 OUTPUT_PATH = f"{DATA_DIR}/boxscore_advanced.parquet"
 
+# Custom headers to avoid stats.nba.com blocking/timeouts
+CUSTOM_HEADERS = {
+    "Host": "stats.nba.com",
+    "Connection": "keep-alive",
+    "Accept": "application/json, text/plain, */*",
+    "x-nba-stats-token": "true",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "x-nba-stats-origin": "stats",
+    "Referer": "https://www.nba.com/",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://www.nba.com",
+}
+
 
 def parse_minutes(mins_str):
     """Parse NBA minutes string like '33:14' to float minutes."""
@@ -44,7 +58,9 @@ def fetch_game_boxscore(game_id):
 
     # ── Misc stats (scoring breakdown) ──
     try:
-        misc = boxscoremiscv3.BoxScoreMiscV3(game_id=game_id)
+        misc = boxscoremiscv3.BoxScoreMiscV3(
+            game_id=game_id, headers=CUSTOM_HEADERS, timeout=60
+        )
         md = misc.get_dict()["boxScoreMisc"]
 
         for side, key in [("HOME", "homeTeam"), ("AWAY", "awayTeam")]:
@@ -59,11 +75,13 @@ def fetch_game_boxscore(game_id):
         print(f"  Misc fetch failed for {game_id}: {e}")
         return None
 
-    time.sleep(0.6)
+    time.sleep(1.0)
 
     # ── Traditional stats (player-level for star/bench/lineup) ──
     try:
-        trad = boxscoretraditionalv3.BoxScoreTraditionalV3(game_id=game_id)
+        trad = boxscoretraditionalv3.BoxScoreTraditionalV3(
+            game_id=game_id, headers=CUSTOM_HEADERS, timeout=60
+        )
         td = trad.get_dict()["boxScoreTraditional"]
 
         for side, key in [("HOME", "homeTeam"), ("AWAY", "awayTeam")]:
@@ -140,15 +158,23 @@ def main():
             df.to_parquet(OUTPUT_PATH, index=False)
             print(f"  Progress saved: {len(rows)} games total")
 
-        result = fetch_game_boxscore(game_id)
+        result = None
+        for attempt in range(3):
+            result = fetch_game_boxscore(game_id)
+            if result:
+                break
+            wait = 5 * (attempt + 1)
+            print(f"  Retry {attempt+1}/2 for {game_id} in {wait}s...")
+            time.sleep(wait)
+
         if result:
             rows.append(result)
             if i % 20 == 0:
                 print(f"  [{i+1}/{len(remaining)}] {game_id} OK")
         else:
-            print(f"  [{i+1}/{len(remaining)}] {game_id} FAILED")
+            print(f"  [{i+1}/{len(remaining)}] {game_id} FAILED after 3 attempts")
 
-        time.sleep(0.6)  # Rate limiting
+        time.sleep(1.0)  # Rate limiting
 
     # Final save
     df = pd.DataFrame(rows)
