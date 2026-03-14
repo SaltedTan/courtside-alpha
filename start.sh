@@ -12,16 +12,26 @@ PIDFILE="$ROOT/.shadow-trader.pids"
 # ── Stop mode ────────────────────────────────────────────────────────────────
 if [[ "${1:-}" == "--stop" ]]; then
     if [[ -f "$PIDFILE" ]]; then
-        echo "Stopping services..."
+        echo "Stopping services by PID..."
         while read -r pid name; do
             if kill -0 "$pid" 2>/dev/null; then
-                kill "$pid" 2>/dev/null && echo "  Stopped $name (PID $pid)"
+                # Send standard terminate signal
+                kill "$pid" 2>/dev/null && echo "  Stopped $name parent (PID $pid)"
             fi
         done < "$PIDFILE"
         rm -f "$PIDFILE"
     else
-        echo "No running services found."
+        echo "No running services found in PID file."
     fi
+
+    echo "Cleaning up lingering port processes (Zombie Check)..."
+    for port in 8000 8001 4000 3000; do
+        # We add -sTCP:LISTEN to only kill the server, not the connected browser!
+        pid_on_port=$(lsof -tiTCP:$port -sTCP:LISTEN 2>/dev/null || true)
+        if [[ -n "$pid_on_port" ]]; then
+            kill -9 $pid_on_port 2>/dev/null && echo "  Force-stopped listening process on port $port"
+        fi
+    done
     exit 0
 fi
 

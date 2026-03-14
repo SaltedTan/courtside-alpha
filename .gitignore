@@ -56,3 +56,6 @@ out/
 .idea/
 *.swp
 *.swo
+
+# Logs
+logs/
