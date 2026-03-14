@@ -1075,6 +1075,9 @@ async fn run_ws_ingestion(
             }
 
             // ── BUY CHECK: no open position, look for edge ──────────────
+            // Only buy when model has a POSITIVE edge on the chosen side:
+            //   edge > threshold  → model says home is underpriced → buy home token
+            //   edge < -threshold → model says home is overpriced  → buy away token
             if edge.abs() < EDGE_THRESHOLD { continue; }
             if resp.edge_confidence < 0.60 {
                 info!(
@@ -1085,10 +1088,17 @@ async fn run_ws_ingestion(
             }
 
             let bought_home = edge > 0.0;
+
+            // Resolve the away team name from the registry
+            let away_team_name = registry.values()
+                .find(|e| e.condition_id == entry.condition_id && !e.is_home)
+                .map(|e| e.team_name.clone())
+                .unwrap_or_else(|| "AWAY".to_string());
+
             let action = if bought_home {
                 format!("BUY_{}", entry.team_name.to_uppercase().replace(' ', "_"))
             } else {
-                "BUY_AWAY".to_string()
+                format!("BUY_{}", away_team_name.to_uppercase().replace(' ', "_"))
             };
 
             info!(
@@ -1096,8 +1106,8 @@ async fn run_ws_ingestion(
                 entry.question, entry.team_name, resp.edge_confidence * 100.0
             );
 
-            // Sign the buy order
-            let side = if bought_home { wallet::Side::Buy } else { wallet::Side::Buy };
+            // Sign the buy order — Buy for home token, Sell for away (short home)
+            let side = if bought_home { wallet::Side::Buy } else { wallet::Side::Sell };
             let signed = wallet.sign_order(&entry.token_id, market_prob, STAKE_USDC, side).ok();
 
             if signed.is_none() {
