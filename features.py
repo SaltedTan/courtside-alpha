@@ -290,6 +290,135 @@ class FeatureEngine:
         features["DIFF_REST_DAYS"] = features["HOME_REST_DAYS"] - features["AWAY_REST_DAYS"]
         features["DIFF_FATIGUE"] = features["AWAY_GAMES_LAST_7D"] - features["HOME_GAMES_LAST_7D"]
 
+        # ── Live boxscore features (populated by server.py enrich_from_boxscore) ──
+        hb = "home_box"
+        ab = "away_box"
+
+        # Team shooting (live)
+        features["LIVE_HOME_FG_PCT"] = game_state.get(f"{hb}_fg_pct", 0)
+        features["LIVE_AWAY_FG_PCT"] = game_state.get(f"{ab}_fg_pct", 0)
+        features["LIVE_DIFF_FG_PCT"] = features["LIVE_HOME_FG_PCT"] - features["LIVE_AWAY_FG_PCT"]
+
+        features["LIVE_HOME_FG3_PCT"] = game_state.get(f"{hb}_fg3_pct", 0)
+        features["LIVE_AWAY_FG3_PCT"] = game_state.get(f"{ab}_fg3_pct", 0)
+        features["LIVE_DIFF_FG3_PCT"] = features["LIVE_HOME_FG3_PCT"] - features["LIVE_AWAY_FG3_PCT"]
+
+        features["LIVE_HOME_EFG_PCT"] = game_state.get(f"{hb}_efg_pct", 0)
+        features["LIVE_AWAY_EFG_PCT"] = game_state.get(f"{ab}_efg_pct", 0)
+        features["LIVE_DIFF_EFG_PCT"] = features["LIVE_HOME_EFG_PCT"] - features["LIVE_AWAY_EFG_PCT"]
+
+        features["LIVE_HOME_TS_PCT"] = game_state.get(f"{hb}_ts_pct", 0)
+        features["LIVE_AWAY_TS_PCT"] = game_state.get(f"{ab}_ts_pct", 0)
+        features["LIVE_DIFF_TS_PCT"] = features["LIVE_HOME_TS_PCT"] - features["LIVE_AWAY_TS_PCT"]
+
+        features["LIVE_HOME_FT_PCT"] = game_state.get(f"{hb}_ft_pct", 0)
+        features["LIVE_AWAY_FT_PCT"] = game_state.get(f"{ab}_ft_pct", 0)
+
+        # Rebounding (live)
+        features["LIVE_HOME_REB_OFF"] = game_state.get(f"{hb}_reb_off", 0)
+        features["LIVE_AWAY_REB_OFF"] = game_state.get(f"{ab}_reb_off", 0)
+        features["LIVE_DIFF_REB_OFF"] = features["LIVE_HOME_REB_OFF"] - features["LIVE_AWAY_REB_OFF"]
+
+        features["LIVE_HOME_REB_TOTAL"] = game_state.get(f"{hb}_reb_total", 0)
+        features["LIVE_AWAY_REB_TOTAL"] = game_state.get(f"{ab}_reb_total", 0)
+        features["LIVE_DIFF_REB_TOTAL"] = features["LIVE_HOME_REB_TOTAL"] - features["LIVE_AWAY_REB_TOTAL"]
+
+        # Turnovers & assists (live)
+        features["LIVE_HOME_AST"] = game_state.get(f"{hb}_assists", 0)
+        features["LIVE_AWAY_AST"] = game_state.get(f"{ab}_assists", 0)
+        features["LIVE_HOME_TOV"] = game_state.get(f"{hb}_turnovers", 0)
+        features["LIVE_AWAY_TOV"] = game_state.get(f"{ab}_turnovers", 0)
+        features["LIVE_DIFF_AST_TO"] = (
+            game_state.get(f"{hb}_ast_to_ratio", 0) -
+            game_state.get(f"{ab}_ast_to_ratio", 0)
+        )
+        features["LIVE_DIFF_TOV"] = features["LIVE_HOME_TOV"] - features["LIVE_AWAY_TOV"]
+
+        # Defense (live)
+        features["LIVE_HOME_STL"] = game_state.get(f"{hb}_steals", 0)
+        features["LIVE_AWAY_STL"] = game_state.get(f"{ab}_steals", 0)
+        features["LIVE_HOME_BLK"] = game_state.get(f"{hb}_blocks", 0)
+        features["LIVE_AWAY_BLK"] = game_state.get(f"{ab}_blocks", 0)
+
+        # Fouls & bonus (live) — critical for late-game
+        features["LIVE_HOME_FOULS"] = game_state.get(f"{hb}_fouls", 0)
+        features["LIVE_AWAY_FOULS"] = game_state.get(f"{ab}_fouls", 0)
+        features["LIVE_DIFF_FOULS"] = features["LIVE_HOME_FOULS"] - features["LIVE_AWAY_FOULS"]
+        features["LIVE_HOME_IN_BONUS"] = game_state.get(f"{hb}_in_bonus", 0)
+        features["LIVE_AWAY_IN_BONUS"] = game_state.get(f"{ab}_in_bonus", 0)
+        features["LIVE_HOME_FOUL_TROUBLE"] = game_state.get(f"{hb}_foul_trouble", 0)
+        features["LIVE_AWAY_FOUL_TROUBLE"] = game_state.get(f"{ab}_foul_trouble", 0)
+
+        # Timeouts remaining
+        features["LIVE_HOME_TIMEOUTS"] = game_state.get(f"{hb}_timeouts_remaining", 0)
+        features["LIVE_AWAY_TIMEOUTS"] = game_state.get(f"{ab}_timeouts_remaining", 0)
+
+        # Scoring quality (live)
+        features["LIVE_HOME_PTS_PAINT"] = game_state.get(f"{hb}_pts_paint", 0)
+        features["LIVE_AWAY_PTS_PAINT"] = game_state.get(f"{ab}_pts_paint", 0)
+        features["LIVE_DIFF_PTS_PAINT"] = features["LIVE_HOME_PTS_PAINT"] - features["LIVE_AWAY_PTS_PAINT"]
+
+        features["LIVE_HOME_PTS_FASTBREAK"] = game_state.get(f"{hb}_pts_fastbreak", 0)
+        features["LIVE_AWAY_PTS_FASTBREAK"] = game_state.get(f"{ab}_pts_fastbreak", 0)
+
+        features["LIVE_HOME_PTS_2ND"] = game_state.get(f"{hb}_pts_2nd_chance", 0)
+        features["LIVE_AWAY_PTS_2ND"] = game_state.get(f"{ab}_pts_2nd_chance", 0)
+        features["LIVE_DIFF_PTS_2ND"] = features["LIVE_HOME_PTS_2ND"] - features["LIVE_AWAY_PTS_2ND"]
+
+        features["LIVE_HOME_PTS_OFF_TO"] = game_state.get(f"{hb}_pts_off_to", 0)
+        features["LIVE_AWAY_PTS_OFF_TO"] = game_state.get(f"{ab}_pts_off_to", 0)
+
+        features["LIVE_HOME_BENCH_PTS"] = game_state.get(f"{hb}_bench_pts", 0)
+        features["LIVE_AWAY_BENCH_PTS"] = game_state.get(f"{ab}_bench_pts", 0)
+        features["LIVE_DIFF_BENCH_PTS"] = features["LIVE_HOME_BENCH_PTS"] - features["LIVE_AWAY_BENCH_PTS"]
+
+        # Game flow
+        features["LIVE_LEAD_CHANGES"] = game_state.get(f"{hb}_lead_changes", 0)
+        features["LIVE_TIMES_TIED"] = game_state.get(f"{hb}_times_tied", 0)
+        features["LIVE_HOME_BIGGEST_LEAD"] = game_state.get(f"{hb}_biggest_lead", 0)
+        features["LIVE_AWAY_BIGGEST_LEAD"] = game_state.get(f"{ab}_biggest_lead", 0)
+        features["LIVE_HOME_BIGGEST_RUN"] = game_state.get(f"{hb}_biggest_run", 0)
+        features["LIVE_AWAY_BIGGEST_RUN"] = game_state.get(f"{ab}_biggest_run", 0)
+
+        # Free throw rate (FTA / FGA) — proxy for aggressiveness / drawing fouls
+        home_fga = game_state.get(f"{hb}_fga", 0)
+        away_fga = game_state.get(f"{ab}_fga", 0)
+        features["LIVE_HOME_FT_RATE"] = (
+            game_state.get(f"{hb}_fta", 0) / home_fga if home_fga > 0 else 0
+        )
+        features["LIVE_AWAY_FT_RATE"] = (
+            game_state.get(f"{ab}_fta", 0) / away_fga if away_fga > 0 else 0
+        )
+
+        # Star player tracking
+        features["LIVE_HOME_STAR_PTS"] = game_state.get(f"{hb}_star_pts", 0)
+        features["LIVE_AWAY_STAR_PTS"] = game_state.get(f"{ab}_star_pts", 0)
+        features["LIVE_HOME_STAR_FOULS"] = game_state.get(f"{hb}_star_fouls", 0)
+        features["LIVE_AWAY_STAR_FOULS"] = game_state.get(f"{ab}_star_fouls", 0)
+        features["LIVE_HOME_STAR_PM"] = game_state.get(f"{hb}_star_pm", 0)
+        features["LIVE_AWAY_STAR_PM"] = game_state.get(f"{ab}_star_pm", 0)
+        features["LIVE_HOME_STAR_MINS"] = game_state.get(f"{hb}_star_mins", 0)
+        features["LIVE_AWAY_STAR_MINS"] = game_state.get(f"{ab}_star_mins", 0)
+
+        # Lineup quality
+        features["LIVE_HOME_LINEUP_PM"] = game_state.get(f"{hb}_lineup_pm", 0)
+        features["LIVE_AWAY_LINEUP_PM"] = game_state.get(f"{ab}_lineup_pm", 0)
+        features["LIVE_DIFF_LINEUP_PM"] = features["LIVE_HOME_LINEUP_PM"] - features["LIVE_AWAY_LINEUP_PM"]
+
+        # Hot/cold shooting
+        features["LIVE_HOME_HOT_SHOOTERS"] = game_state.get(f"{hb}_hot_shooters", 0)
+        features["LIVE_AWAY_HOT_SHOOTERS"] = game_state.get(f"{ab}_hot_shooters", 0)
+        features["LIVE_HOME_COLD_SHOOTERS"] = game_state.get(f"{hb}_cold_shooters", 0)
+        features["LIVE_AWAY_COLD_SHOOTERS"] = game_state.get(f"{ab}_cold_shooters", 0)
+
+        # Composite signals
+        features["LIVE_STAR_FOUL_DANGER"] = max(
+            features["LIVE_HOME_STAR_FOULS"], features["LIVE_AWAY_STAR_FOULS"]
+        )
+        features["LIVE_FOUL_TROUBLE_DIFF"] = (
+            features["LIVE_AWAY_FOUL_TROUBLE"] - features["LIVE_HOME_FOUL_TROUBLE"]
+        )  # positive = away team in more trouble = good for home
+
         return features
 
     def to_live_array(self, features):

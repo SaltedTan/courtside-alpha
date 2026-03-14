@@ -1,0 +1,62 @@
+INFO:     Started server process [39702]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+FeatureEngine initialized:
+  30 team profiles
+  188 live features expected
+  155 pregame features expected
+Loading models...
+All models loaded.
+Live polling started...
+Market odds polling started...
+Found 23 NBA game moneylines on Polymarket
+  [22:32:12] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:64959 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64967 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64976 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64985 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64994 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65003 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65012 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65021 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65032 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65041 - "GET /games HTTP/1.1" 200 OK
+Found 23 NBA game moneylines on Polymarket
+  [22:32:43] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:65051 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65062 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65071 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65082 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65092 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65101 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65102 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65112 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65121 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65130 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65139 - "GET /games HTTP/1.1" 200 OK
+Found 23 NBA game moneylines on Polymarket
+  [22:33:13] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:65156 - "GET /games HTTP/1.1" 200 OK
+Found 23 NBA game moneylines on Polymarket
+  [22:33:44] Fetched 23 Polymarket game odds
+Found 23 NBA game moneylines on Polymarket
+  [22:34:14] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:65162 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65164 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65164 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65164 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65164 - "GET /games HTTP/1.1" 200 OK
+Found 23 NBA game moneylines on Polymarket
+  [22:34:44] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:65167 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65169 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65169 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65169 - "GET /games HTTP/1.1" 200 OK
+Found 23 NBA game moneylines on Polymarket
+  [22:35:14] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:65176 - "GET /games HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39702]

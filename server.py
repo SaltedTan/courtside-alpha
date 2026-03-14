@@ -171,9 +171,127 @@ class GameTracker:
         self.last_poll = datetime.now()
         return active_game_ids
 
+    def enrich_from_boxscore(self, game_id):
+        """
+        Pull live boxscore for a game and enrich the tracked state
+        with detailed team + player stats the scoreboard doesn't provide.
+        """
+        state = self.games.get(game_id)
+        if not state:
+            return
+
+        try:
+            bs = live_boxscore.BoxScore(game_id=game_id)
+            data = bs.get_dict().get("game", {})
+        except Exception as e:
+            print(f"  Boxscore fetch failed for {game_id}: {e}")
+            return
+
+        # ── Team-level stats ─────────────────────────────────────────
+        for side, key in [("home", "homeTeam"), ("away", "awayTeam")]:
+            team = data.get(key, {})
+            stats = team.get("statistics", {})
+
+            prefix = f"{side}_box"
+            state[f"{prefix}_fg_pct"] = stats.get("fieldGoalsPercentage", 0.0)
+            state[f"{prefix}_fg3_pct"] = stats.get("threePointersPercentage", 0.0)
+            state[f"{prefix}_ft_pct"] = stats.get("freeThrowsPercentage", 0.0)
+            state[f"{prefix}_efg_pct"] = stats.get("fieldGoalsEffectiveAdjusted", 0.0)
+            state[f"{prefix}_ts_pct"] = stats.get("trueShootingPercentage", 0.0)
+            state[f"{prefix}_reb_off"] = stats.get("reboundsOffensive", 0)
+            state[f"{prefix}_reb_def"] = stats.get("reboundsDefensive", 0)
+            state[f"{prefix}_reb_total"] = stats.get("reboundsTotal", 0)
+            state[f"{prefix}_assists"] = stats.get("assists", 0)
+            state[f"{prefix}_turnovers"] = stats.get("turnoversTotal", 0)
+            state[f"{prefix}_ast_to_ratio"] = stats.get("assistsTurnoverRatio", 0.0)
+            state[f"{prefix}_steals"] = stats.get("steals", 0)
+            state[f"{prefix}_blocks"] = stats.get("blocks", 0)
+            state[f"{prefix}_fouls"] = stats.get("foulsPersonal", 0)
+            state[f"{prefix}_fouls_tech"] = stats.get("foulsTechnical", 0)
+            state[f"{prefix}_pts_paint"] = stats.get("pointsInThePaint", 0)
+            state[f"{prefix}_pts_fastbreak"] = stats.get("pointsFastBreak", 0)
+            state[f"{prefix}_pts_2nd_chance"] = stats.get("pointsSecondChance", 0)
+            state[f"{prefix}_pts_off_to"] = stats.get("pointsFromTurnovers", 0)
+            state[f"{prefix}_bench_pts"] = stats.get("benchPoints", 0)
+            state[f"{prefix}_biggest_lead"] = stats.get("biggestLead", 0)
+            state[f"{prefix}_biggest_run"] = stats.get("biggestScoringRun", 0)
+            state[f"{prefix}_lead_changes"] = stats.get("leadChanges", 0)
+            state[f"{prefix}_times_tied"] = stats.get("timesTied", 0)
+            state[f"{prefix}_in_bonus"] = 1 if stats.get("inBonus") else 0
+            state[f"{prefix}_timeouts_remaining"] = stats.get("timeoutsRemaining", 0)
+            state[f"{prefix}_fta"] = stats.get("freeThrowsAttempted", 0)
+            state[f"{prefix}_fga"] = stats.get("fieldGoalsAttempted", 0)
+
+            # ── Player-level extraction ──────────────────────────────
+            players = team.get("players", [])
+            active_players = [p for p in players if p.get("played") == "1"]
+
+            if active_players:
+                # Star player stats (highest-minutes player)
+                by_mins = sorted(
+                    active_players,
+                    key=lambda p: self._parse_minutes(
+                        p.get("statistics", {}).get("minutesCalculated", "PT00M")
+                    ),
+                    reverse=True,
+                )
+
+                star = by_mins[0].get("statistics", {})
+                state[f"{prefix}_star_pts"] = star.get("points", 0)
+                state[f"{prefix}_star_fouls"] = star.get("foulsPersonal", 0)
+                state[f"{prefix}_star_pm"] = star.get("plusMinusPoints", 0.0)
+                state[f"{prefix}_star_mins"] = self._parse_minutes(
+                    star.get("minutesCalculated", "PT00M")
+                )
+
+                # On-court players
+                on_court = [p for p in active_players if p.get("oncourt") == "1"]
+                state[f"{prefix}_oncourt_count"] = len(on_court)
+
+                # Aggregate +/- of current lineup
+                lineup_pm = sum(
+                    p.get("statistics", {}).get("plusMinusPoints", 0.0)
+                    for p in on_court
+                )
+                state[f"{prefix}_lineup_pm"] = lineup_pm
+
+                # Player in foul trouble (any player with 4+ fouls)
+                foul_trouble_count = sum(
+                    1 for p in active_players
+                    if p.get("statistics", {}).get("foulsPersonal", 0) >= 4
+                )
+                state[f"{prefix}_foul_trouble"] = foul_trouble_count
+
+                # Hot hand: any player shooting > 60% FG on 5+ attempts
+                hot_players = sum(
+                    1 for p in active_players
+                    if p.get("statistics", {}).get("fieldGoalsAttempted", 0) >= 5
+                    and p.get("statistics", {}).get("fieldGoalsPercentage", 0) > 0.6
+                )
+                state[f"{prefix}_hot_shooters"] = hot_players
+
+                # Cold hand: any player shooting < 30% FG on 5+ attempts
+                cold_players = sum(
+                    1 for p in active_players
+                    if p.get("statistics", {}).get("fieldGoalsAttempted", 0) >= 5
+                    and p.get("statistics", {}).get("fieldGoalsPercentage", 0) < 0.3
+                )
+                state[f"{prefix}_cold_shooters"] = cold_players
+
     def get_game_state(self, game_id):
         """Return current state for a game."""
         return self.games.get(game_id)
+
+    def _parse_minutes(self, mins_str):
+        """Parse 'PT25M30.00S' or 'PT05M' to float minutes."""
+        try:
+            s = mins_str.replace("PT", "").replace("S", "")
+            parts = s.split("M")
+            m = float(parts[0]) if parts[0] else 0
+            sec = float(parts[1]) if len(parts) > 1 and parts[1] else 0
+            return m + sec / 60
+        except Exception:
+            return 0.0
 
     def _parse_iso_clock(self, clock_str):
         """Parse 'PT05M30.00S' format to seconds."""
@@ -349,6 +467,9 @@ async def poll_live_games():
                 state = tracker.get_game_state(game_id)
                 if not state:
                     continue
+
+                # Enrich with live boxscore (shooting, fouls, lineups, etc.)
+                tracker.enrich_from_boxscore(game_id)
 
                 # Build features
                 features = feature_engine.build_feature_vector(state)

@@ -1,0 +1,223 @@
+   Compiling execution-engine v0.1.0 (/Users/masamiyoshida/Documents/unihack/execution-engine)
+warning: field `game_start_time` is never read
+   --> src/main.rs:275:5
+    |
+267 | struct MarketEntry {
+    |        ----------- field in this struct
+...
+275 |     game_start_time: String,
+    |     ^^^^^^^^^^^^^^^
+    |
+    = note: `MarketEntry` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `maker_amount` and `taker_amount` are never read
+  --> src/wallet.rs:57:9
+   |
+51 | pub struct SignedOrder {
+   |            ----------- fields in this struct
+...
+57 |     pub maker_amount: u64,
+   |         ^^^^^^^^^^^^
+58 |     /// Outcome tokens expected in base units.
+59 |     pub taker_amount: u64,
+   |         ^^^^^^^^^^^^
+
+warning: `execution-engine` (bin "execution-engine") generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 3.84s
+     Running `target/release/execution-engine`
+[2m2026-03-14T11:32:14.663033Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m NBA Execution Engine v2 (testnet signing) starting…
+[2m2026-03-14T11:32:14.663151Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Test wallet address : 0xe0d46b2474bfbac1ee2b467ffd2027fcdb9fc00a
+[2m2026-03-14T11:32:14.663165Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Chain               : Polygon (ID 137) — no real funds
+[2m2026-03-14T11:32:14.664068Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m SQLite ready at ../trades.sqlite
+[2m2026-03-14T11:32:14.664207Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Wallet state loaded: address=0xe0d46b2474bfbac1ee2b467ffd2027fcdb9fc00a  balance=$9600.00
+[2m2026-03-14T11:32:14.687894Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m HTTP server listening on 0.0.0.0:4000
+[2m2026-03-14T11:32:14.691758Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Alpha Engine healthy: {"feature_engine_ready":true,"model_loaded":true,"status":"ok","version":"2.0"}
+[2m2026-03-14T11:32:16.115555Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Nets vs. 76ers"  start=2026-03-14 17:00:00+00  away=Nets (24%)  home=76ers (76%)
+[2m2026-03-14T11:32:16.115598Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Bucks vs. Hawks"  start=2026-03-14 19:00:00+00  away=Bucks (26%)  home=Hawks (74%)
+[2m2026-03-14T11:32:16.115610Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Wizards vs. Celtics"  start=2026-03-14 22:00:00+00  away=Wizards (6%)  home=Celtics (94%)
+[2m2026-03-14T11:32:16.115622Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Magic vs. Heat"  start=2026-03-15 00:00:00+00  away=Magic (40%)  home=Heat (60%)
+[2m2026-03-14T11:32:16.115634Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Hornets vs. Spurs"  start=2026-03-14 19:30:00+00  away=Hornets (32%)  home=Spurs (68%)
+[2m2026-03-14T11:32:16.115647Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Nuggets vs. Lakers"  start=2026-03-15 00:30:00+00  away=Nuggets (57%)  home=Lakers (42%)
+[2m2026-03-14T11:32:16.115661Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Kings vs. Clippers"  start=2026-03-15 02:30:00+00  away=Kings (12%)  home=Clippers (88%)
+[2m2026-03-14T11:32:16.115666Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Timberwolves vs. Thunder"  start=2026-03-15 17:00:00+00  away=Timberwolves (27%)  home=Thunder (73%)
+[2m2026-03-14T11:32:16.115670Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Mavericks vs. Cavaliers"  start=2026-03-15 19:30:00+00  away=Mavericks (12%)  home=Cavaliers (88%)
+[2m2026-03-14T11:32:16.115675Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Pistons vs. Raptors"  start=2026-03-15 19:30:00+00  away=Pistons (60%)  home=Raptors (40%)
+[2m2026-03-14T11:32:16.115679Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Pacers vs. Bucks"  start=2026-03-15 19:30:00+00  away=Pacers (36%)  home=Bucks (64%)
+[2m2026-03-14T11:32:16.115700Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Trail Blazers vs. 76ers"  start=2026-03-15 22:00:00+00  away=Trail Blazers (69%)  home=76ers (31%)
+[2m2026-03-14T11:32:16.115705Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Warriors vs. Knicks"  start=2026-03-16 00:00:00+00  away=Warriors (24%)  home=Knicks (76%)
+[2m2026-03-14T11:32:16.115708Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Game market: "Jazz vs. Kings"  start=2026-03-16 02:00:00+00  away=Jazz (48%)  home=Kings (52%)
+[2m2026-03-14T11:32:16.115726Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Found 14 live NBA game moneyline markets
+[2m2026-03-14T11:32:16.115728Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m (Re)connecting WebSocket ingestion loop…
+[2m2026-03-14T11:32:16.115760Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Connecting to Polymarket WebSocket — 28 tokens / 14 markets
+[2m2026-03-14T11:32:16.910658Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m WebSocket connected
+[2m2026-03-14T11:32:16.910719Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Subscription sent — tracking 0 open positions
+[2m2026-03-14T11:32:41.918935Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:32:45.511162Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:33:01.344717Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:33:01.358625Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
+[2m2026-03-14T11:33:41.242457Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:33:41.253115Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.449 found but confidence too low (22.8%) — skipping
+[2m2026-03-14T11:33:49.734920Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:33:50.051769Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:33:52.062813Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:33:52.912946Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:33:56.674806Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:33:59.888339Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:05.046456Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:25.874277Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:34:25.890242Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
+[2m2026-03-14T11:34:26.425023Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:34:33.595336Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:34:33.607275Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.449 found but confidence too low (22.8%) — skipping
+[2m2026-03-14T11:34:33.995331Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:34:34.005011Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.096 found but confidence too low (51.8%) — skipping
+[2m2026-03-14T11:34:34.132347Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:34:34.141915Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
+[2m2026-03-14T11:34:34.237682Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:34:34.247024Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m EDGE FOUND  game="Kings vs. Clippers"  home=Clippers  edge=+0.078  conf=86.0%  action=BUY_CLIPPERS
+[2m2026-03-14T11:34:34.249353Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m TRADE SIGNED  id=57a1031d-8d90-44f4-a31e-6abc0c268141  game=0x671b141d1a220a996d5c7074e155edb1b3c82d61ecdee605ebe5fbe7e540d89a  action=BUY_CLIPPERS  market=0.880  model=0.958  edge=+0.078  stake=50 USDC  hash=0x9e06a39557
+[2m2026-03-14T11:34:34.249382Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Position opened — 1 open positions total
+[2m2026-03-14T11:34:34.704638Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:34:35.464540Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:36.148276Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:36.462280Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:38.388100Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:39.895066Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:34:40.089671Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:34:40.843281Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:34:41.756632Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:34:41.771936Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:34:44.705429Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:34:44.712491Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
+[2m2026-03-14T11:34:45.012878Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:34:57.162002Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T11:34:57.173017Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m EDGE FOUND  game="Nets vs. 76ers"  home=76ers  edge=-0.074  conf=78.2%  action=BUY_NETS
+[2m2026-03-14T11:34:57.174848Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m TRADE SIGNED  id=094ea40b-4dca-4f08-ba7b-7d9bfd1049cd  game=0x47d3f02af9563b3a1c718049bff511f45e2564d893c2e52726b31495c5509fc5  action=BUY_NETS  market=0.770  model=0.696  edge=-0.074  stake=50 USDC  hash=0x42be0d6135
+[2m2026-03-14T11:34:57.174883Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Position opened — 2 open positions total
+[2m2026-03-14T11:34:59.228817Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:34:59.235983Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge -0.449 found but confidence too low (22.8%) — skipping
+[2m2026-03-14T11:35:00.119218Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:35:00.475014Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:35:00.485538Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Edge +0.252 found but confidence too low (49.9%) — skipping
+[2m2026-03-14T11:35:01.296433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:35:04.752299Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:35:06.035443Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:35:06.113243Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:35:13.644799Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:35:14.494699Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:35:14.568207Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:35:25.731096Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:35:27.806754Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:35:47.844639Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=Nets  is_home=false  market_prob=0.240
+[2m2026-03-14T11:35:48.468097Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T11:35:48.468697Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:35:49.925014Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:35:49.925746Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:35:52.729815Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:35:53.225970Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:35:53.485196Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:35:54.436583Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:35:54.522543Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:35:57.962606Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:35:57.963656Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:35:58.938767Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Kings  is_home=false  market_prob=0.130
+[2m2026-03-14T11:36:21.800230Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:36:22.444816Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:36:22.753465Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:36:24.970223Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:36:31.347294Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:36:31.348437Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:36:34.982199Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:36:34.982999Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:36:44.550600Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:36:45.431817Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:36:45.498466Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:36:54.395283Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:36:55.051186Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:36:55.131117Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:37:11.545932Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:37:12.571433Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:37:21.822999Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:37:21.823617Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:37:23.483391Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:37:24.399758Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:37:24.399902Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:37:51.484218Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:38:38.506605Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:38:38.514018Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:38:39.549399Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:38:39.550927Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:38:39.560981Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:38:39.602210Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:38:56.997512Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:38:59.001150Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:39:27.007094Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:39:31.056494Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:39:31.057557Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:39:31.540748Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:39:31.541386Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:40:09.442259Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nets vs. 76ers"  team=76ers  is_home=true  market_prob=0.770
+[2m2026-03-14T11:40:09.442811Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:40:13.811032Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:40:20.630123Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:40:20.631248Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:40:31.721549Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:40:33.672992Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:40:46.478181Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.420
+[2m2026-03-14T11:40:46.479316Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:40:47.837421Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:40:47.838688Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:40:51.608871Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:41:21.070324Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:41:21.072421Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:41:30.808537Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.690
+[2m2026-03-14T11:41:30.808786Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:41:45.578779Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Hawks  is_home=true  market_prob=0.750
+[2m2026-03-14T11:41:45.579176Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:41:47.065214Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:41:47.674429Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:41:47.868104Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.310
+[2m2026-03-14T11:42:02.864512Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:42:02.867005Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:42:04.854366Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:42:08.792087Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:42:27.556296Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:42:27.774102Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:28.410011Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.320
+[2m2026-03-14T11:42:29.032605Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:31.854909Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:32.608887Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Heat  is_home=true  market_prob=0.610
+[2m2026-03-14T11:42:32.609221Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:42:40.044953Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:42.213110Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:42:43.445934Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Wizards vs. Celtics"  team=Celtics  is_home=true  market_prob=0.950
+[2m2026-03-14T11:42:43.446732Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:42:46.318962Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:51.534431Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:54.397884Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:42:57.234478Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:42:57.806520Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:43:02.278527Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:43:02.278827Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:43:04.170658Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:43:42.808812Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:43:55.958119Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Kings vs. Clippers"  team=Clippers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:43:55.958496Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:44:10.473157Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Cavaliers  is_home=true  market_prob=0.880
+[2m2026-03-14T11:44:10.473858Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:44:11.086394Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Mavericks vs. Cavaliers"  team=Mavericks  is_home=false  market_prob=0.130
+[2m2026-03-14T11:44:15.624768Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Magic vs. Heat"  team=Magic  is_home=false  market_prob=0.400
+[2m2026-03-14T11:44:21.374862Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Hornets  is_home=false  market_prob=0.330
+[2m2026-03-14T11:44:41.970219Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Bucks vs. Hawks"  team=Bucks  is_home=false  market_prob=0.250
+[2m2026-03-14T11:44:44.029275Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:44:46.838490Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.580
+[2m2026-03-14T11:45:00.797607Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
+[2m2026-03-14T11:45:09.791503Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
+[2m2026-03-14T11:45:10.038897Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Nuggets  is_home=false  market_prob=0.570
+[2m2026-03-14T11:45:15.059881Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:45:15.060735Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:45:17.477757Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Hornets vs. Spurs"  team=Spurs  is_home=true  market_prob=0.680
+[2m2026-03-14T11:45:17.478341Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)
+[2m2026-03-14T11:45:50.783730Z[0m [32m INFO[0m [2mexecution_engine[0m[2m:[0m Tick  game="Nuggets vs. Lakers"  team=Lakers  is_home=true  market_prob=0.430
+[2m2026-03-14T11:45:50.784257Z[0m [33m WARN[0m [2mexecution_engine[0m[2m:[0m Alpha Engine error: error sending request for url (http://127.0.0.1:8001/predict)

@@ -1,0 +1,13 @@
+
+> nba-trading-dashboard@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.20.77.10:3000
+
+✓ Starting...
+✓ Ready in 539ms
+ GET / 200 in 377ms (compile: 271ms, render: 106ms)
+(node:39784) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
