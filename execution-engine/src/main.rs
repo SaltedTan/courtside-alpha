@@ -156,6 +156,13 @@ const TRAILING_DROP_PP: f64 = 0.05;
 /// to avoid binary resolution coin-flip risk.
 const TIME_DECAY_SECS: f64 = 120.0;
 
+/// Only scale into an existing position if current edge exceeds entry edge by
+/// at least this many percentage points (prevents duplicate buys at same odds).
+const SCALE_IN_EDGE_INCREASE: f64 = 0.10;
+
+/// Maximum number of BUY trades allowed per game (condition_id).
+const MAX_BUYS_PER_GAME: u32 = 3;
+
 // ── Position tracking ─────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone)]
@@ -868,6 +875,101 @@ fn parse_price(v: &serde_json::Value) -> Option<f64> {
     }
 }
 
+// ── Position persistence (prevents duplicate buys across WS reconnections) ──
+
+/// Load existing OPEN BUY trades from SQLite and reconstruct position state.
+/// Called at the start of each WS session so the bot knows what it already holds.
+fn load_open_positions(
+    conn: &Connection,
+    registry: &std::collections::HashMap<String, MarketEntry>,
+) -> (
+    std::collections::HashMap<String, OpenPosition>,
+    std::collections::HashMap<String, u32>,
+) {
+    let mut positions = std::collections::HashMap::new();
+    let mut buy_counts: std::collections::HashMap<String, u32> =
+        std::collections::HashMap::new();
+
+    let mut stmt = match conn.prepare(
+        "SELECT game_id, action, market_implied_prob, model_implied_prob, timestamp \
+         FROM simulated_trades WHERE status = 'OPEN' AND action LIKE 'BUY_%' \
+         ORDER BY timestamp ASC",
+    ) {
+        Ok(s) => s,
+        Err(e) => {
+            error!("Failed to load open positions: {e}");
+            return (positions, buy_counts);
+        }
+    };
+
+    let rows: Vec<(String, String, f64, f64, String)> = stmt
+        .query_map([], |row| {
+            Ok((
+                row.get::<_, String>(0)?,
+                row.get::<_, String>(1)?,
+                row.get::<_, f64>(2)?,
+                row.get::<_, f64>(3)?,
+                row.get::<_, String>(4)?,
+            ))
+        })
+        .unwrap()
+        .filter_map(|r| r.ok())
+        .collect();
+
+    for (cond_id, action, entry_price, entry_model, ts) in rows {
+        *buy_counts.entry(cond_id.clone()).or_insert(0) += 1;
+
+        // Only keep the earliest trade as the reference position
+        if positions.contains_key(&cond_id) {
+            continue;
+        }
+
+        let bought_home = entry_model > entry_price;
+
+        // Resolve token info from the current session's registry
+        let (token_id, team_name) = registry
+            .values()
+            .find(|e| e.condition_id == cond_id && e.is_home == bought_home)
+            .map(|e| (e.token_id.clone(), e.team_name.clone()))
+            .unwrap_or_else(|| {
+                let team = action
+                    .strip_prefix("BUY_")
+                    .unwrap_or(&action)
+                    .to_string();
+                (String::new(), team)
+            });
+
+        let entered_at = chrono::DateTime::parse_from_rfc3339(&ts)
+            .map(|dt| dt.with_timezone(&Utc))
+            .unwrap_or_else(|_| Utc::now());
+
+        positions.insert(
+            cond_id.clone(),
+            OpenPosition {
+                condition_id: cond_id,
+                token_id,
+                team_name,
+                side_label: action,
+                bought_home,
+                entry_price,
+                peak_price: entry_price, // conservative: reset peak to entry
+                entry_model,
+                entered_at,
+            },
+        );
+    }
+
+    if !positions.is_empty() {
+        info!(
+            "Restored {} open positions from DB ({} total buys across all games)",
+            positions.len(),
+            buy_counts.values().sum::<u32>(),
+        );
+    }
+
+    (positions, buy_counts)
+}
+
 // ── WebSocket ingestion ───────────────────────────────────────────────────────
 
 async fn run_ws_ingestion(
@@ -879,10 +981,6 @@ async fn run_ws_ingestion(
     let mut registry: std::collections::HashMap<String, MarketEntry> =
         std::collections::HashMap::new();
     let mut all_token_ids: Vec<String> = Vec::new();
-
-    // Open positions keyed by condition_id (one position per game)
-    let mut positions: std::collections::HashMap<String, OpenPosition> =
-        std::collections::HashMap::new();
 
     for m in &markets {
         let home_tid = m.tokens.iter().find(|t| t.is_home).and_then(|t| t.team_id);
@@ -905,6 +1003,12 @@ async fn run_ws_ingestion(
             all_token_ids.push(t.token_id.clone());
         }
     }
+
+    // Load existing open positions from DB so we don't re-buy after WS reconnection
+    let (mut positions, mut buy_counts) = {
+        let conn = db.lock().await;
+        load_open_positions(&conn, &registry)
+    };
 
     if all_token_ids.is_empty() {
         warn!("No NBA markets found — WebSocket will subscribe to empty list.");
@@ -1065,13 +1169,30 @@ async fn run_ws_ingestion(
                 drop(db_guard);
 
                 positions.remove(&entry.condition_id);
-                info!("Position closed — {} open positions remaining", positions.len());
+                buy_counts.remove(&entry.condition_id);
+                info!("Position closed — {} open games remaining", positions.len());
                 continue;
             }
 
-            // If we have a position but no sell signal, skip (don't stack trades)
+            // If we have a position but no sell signal, only allow scale-in
+            // when the edge has grown significantly on the same side
             if positions.contains_key(&entry.condition_id) {
-                continue;
+                let pos = positions.get(&entry.condition_id).unwrap();
+                let entry_edge = pos.entry_model - pos.entry_price;
+                let count = buy_counts.get(&entry.condition_id).copied().unwrap_or(1);
+
+                let same_side = (edge > 0.0 && entry_edge > 0.0)
+                             || (edge < 0.0 && entry_edge < 0.0);
+                let edge_grown = edge.abs() >= entry_edge.abs() + SCALE_IN_EDGE_INCREASE;
+
+                if count >= MAX_BUYS_PER_GAME || !same_side || !edge_grown {
+                    continue;
+                }
+                info!(
+                    "SCALE-IN  game=\"{}\"  entry_edge={:+.3}  current_edge={:+.3}  \
+                     buy #{}/{}",
+                    entry.question, entry_edge, edge, count + 1, MAX_BUYS_PER_GAME
+                );
             }
 
             // ── BUY CHECK: no open position, look for edge ──────────────
@@ -1128,19 +1249,26 @@ async fn run_ws_ingestion(
             }
             drop(db_guard);
 
-            // Track the open position
-            positions.insert(entry.condition_id.clone(), OpenPosition {
-                condition_id: entry.condition_id.clone(),
-                token_id:     entry.token_id.clone(),
-                team_name:    entry.team_name.clone(),
-                side_label:   action,
-                bought_home,
-                entry_price:  market_prob,
-                peak_price:   market_prob,
-                entry_model:  model_prob,
-                entered_at:   Utc::now(),
-            });
-            info!("Position opened — {} open positions total", positions.len());
+            // Track the open position (only store first entry as reference)
+            if !positions.contains_key(&entry.condition_id) {
+                positions.insert(entry.condition_id.clone(), OpenPosition {
+                    condition_id: entry.condition_id.clone(),
+                    token_id:     entry.token_id.clone(),
+                    team_name:    entry.team_name.clone(),
+                    side_label:   action,
+                    bought_home,
+                    entry_price:  market_prob,
+                    peak_price:   market_prob,
+                    entry_model:  model_prob,
+                    entered_at:   Utc::now(),
+                });
+            }
+            *buy_counts.entry(entry.condition_id.clone()).or_insert(0) += 1;
+            let count = buy_counts[&entry.condition_id];
+            info!(
+                "Position buy #{count}/{MAX_BUYS_PER_GAME} — {} open games total",
+                positions.len()
+            );
         }
     }
 

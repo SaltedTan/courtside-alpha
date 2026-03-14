@@ -1,4 +1,4 @@
-INFO:     Started server process [51615]
+INFO:     Started server process [58091]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
@@ -11,78 +11,42 @@ All models loaded.
 Live polling started...
 Market odds polling started...
 Found 23 NBA game moneylines on Polymarket
-  [23:16:05] Fetched 23 Polymarket game odds
-INFO:     127.0.0.1:49646 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49646 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49648 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49661 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49667 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49678 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49687 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49696 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49705 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49720 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49729 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49738 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49747 - "GET /games HTTP/1.1" 200 OK
+  [23:40:46] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:50842 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50852 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50853 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50855 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50853 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50855 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50865 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50875 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50885 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50894 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50902 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50904 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50906 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50916 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50906 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50902 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50925 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50906 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50902 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50934 - "GET /games HTTP/1.1" 200 OK
 Found 23 NBA game moneylines on Polymarket
-  [23:16:35] Fetched 23 Polymarket game odds
-INFO:     127.0.0.1:49758 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49767 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49768 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49770 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49768 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49770 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49780 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49789 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49797 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49801 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49802 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49802 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49797 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49812 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49821 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49830 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49839 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49848 - "GET /games HTTP/1.1" 200 OK
-Found 23 NBA game moneylines on Polymarket
-  [23:17:05] Fetched 23 Polymarket game odds
-INFO:     127.0.0.1:49850 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49852 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49862 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49871 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49880 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49889 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49898 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49899 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49901 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49911 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49920 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49921 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49923 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49933 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49921 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49923 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49921 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49923 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49942 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49921 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49923 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49951 - "GET /games HTTP/1.1" 200 OK
-Found 23 NBA game moneylines on Polymarket
-  [23:17:36] Fetched 23 Polymarket game odds
-INFO:     127.0.0.1:49961 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49962 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49964 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49974 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49983 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49992 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49993 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49995 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49993 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49995 - "GET /games HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50007 - "GET /games HTTP/1.1" 200 OK
+  [23:41:16] Fetched 23 Polymarket game odds
+INFO:     127.0.0.1:50906 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50902 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50944 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50953 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50906 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50902 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50966 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50975 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50984 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50993 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51002 - "GET /games HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51011 - "GET /games HTTP/1.1" 200 OK
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [51615]
+INFO:     Finished server process [58091]
