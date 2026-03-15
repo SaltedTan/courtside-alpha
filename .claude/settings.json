@@ -20,7 +20,15 @@
       "Bash(python -c \"import pandas as pd; df = pd.read_parquet\\(''data/play_by_play.parquet''\\); print\\(f''PBP games: {df[\"\"GAME_ID\"\"].nunique\\(\\)}''\\); print\\(f''PBP rows: {len\\(df\\)}''\\)\")",
       "Bash(python -c \"import pandas as pd; df = pd.read_parquet\\(''data/play_by_play.parquet''\\); print\\(''Columns:'', list\\(df.columns\\)[:30]\\); print\\(''Sample GAME_ID:'', df[''GAME_ID''].iloc[0]\\)\")",
       "Bash(cargo build:*)",
-      "Bash(~/.cargo/bin/cargo build:*)"
+      "Bash(~/.cargo/bin/cargo build:*)",
+      "Bash(git rm:*)",
+      "Bash(ls /Users/masamiyoshida/Documents/unihack/*.sqlite*)",
+      "Bash(sqlite3 live_observations.sqlite \"SELECT COUNT\\(*\\) as total_snaps, COUNT\\(DISTINCT game_id\\) as games, SUM\\(CASE WHEN home_won IS NOT NULL THEN 1 ELSE 0 END\\) as labelled, SUM\\(CASE WHEN polymarket_home_prob IS NOT NULL THEN 1 ELSE 0 END\\) as with_market FROM snapshots;\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \".tables\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT COUNT\\(*\\) FROM trades;\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT COUNT\\(*\\) FROM simulated_trades; SELECT * FROM simulated_trades LIMIT 3;\")",
+      "Bash(git rebase:*)",
+      "Bash(GIT_EDITOR=true git rebase --continue)"
     ]
   }
 }
