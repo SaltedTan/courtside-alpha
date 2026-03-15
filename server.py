@@ -484,6 +484,12 @@ async def poll_live_games():
             sb_data = sb.get_dict()
             active_ids = tracker.update_from_scoreboard(sb_data)
 
+            # Drop predictions for games no longer live
+            stale = [gid for gid in list(latest_predictions) if gid not in active_ids]
+            for gid in stale:
+                latest_predictions.pop(gid, None)
+                tracker.games.pop(gid, None)
+
             if active_ids:
                 print(f"\n[{datetime.now().strftime('%H:%M:%S')}] "
                       f"{len(active_ids)} live games")
@@ -582,6 +588,9 @@ async def poll_live_games():
                 w = h if winner else a
                 print(f"  FINAL: {h} {final_home} - {a} {final_away} | "
                       f"{w} wins (outcome recorded)")
+                # Remove from live views
+                latest_predictions.pop(gid, None)
+                tracker.games.pop(gid, None)
 
         except Exception as e:
             print(f"  Polling error: {e}")
