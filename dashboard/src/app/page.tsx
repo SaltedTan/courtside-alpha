@@ -246,8 +246,8 @@ export default function Dashboard() {
   }, []);
 
   // ── Derived stats ──
-  const isWon  = (t: Trade) => t.status === "WON"  || (t.status === "CLOSED" && (t.pnl ?? 0) > 0);
-  const isLost = (t: Trade) => t.status === "LOST" || (t.status === "CLOSED" && (t.pnl ?? 0) <= 0);
+  const isWon  = (t: Trade) => t.status === "WON"  || (t.status === "CLOSED" && t.pnl != null && t.pnl > 0);
+  const isLost = (t: Trade) => t.status === "LOST" || (t.status === "CLOSED" && t.pnl != null && t.pnl < 0);
   const won         = trades.filter(isWon).length;
   const lost        = trades.filter(isLost).length;
   const open        = trades.filter(t => t.status === "OPEN").length;
@@ -278,7 +278,8 @@ export default function Dashboard() {
   // Best / worst resolved trade by PnL
   const resolvedWithPnl = trades.filter(t => t.pnl != null);
   const bestTrade  = resolvedWithPnl.length > 0 ? resolvedWithPnl.reduce((b, t) => t.pnl! > b.pnl! ? t : b) : null;
-  const worstTrade = resolvedWithPnl.length > 0 ? resolvedWithPnl.reduce((w, t) => t.pnl! < w.pnl! ? t : w) : null;
+  const lostTrades = resolvedWithPnl.filter(t => t.pnl! < 0);
+  const worstTrade = lostTrades.length > 0 ? lostTrades.reduce((w, t) => t.pnl! < w.pnl! ? t : w) : null;
 
   // PnL split by outcome
   const wonPnl  = trades.filter(isWon).reduce((s, t) => s + (t.pnl ?? 0), 0);
