@@ -501,6 +501,13 @@ fn log_sell_trade(
         params![balance_delta],
     )?;
 
+    // Close all open BUY rows for this game so dashboard shows accurate position count
+    conn.execute(
+        "UPDATE simulated_trades SET status = 'CLOSED' \
+         WHERE game_id = ?1 AND status = 'OPEN' AND action LIKE 'BUY_%'",
+        params![game_id],
+    )?;
+
     info!(
         "TRADE SOLD  id={id}  game={game_id}  reason={reason}  \
          entry={entry_price:.3}  exit={exit_price:.3}  \
@@ -1256,6 +1263,16 @@ async fn run_ws_ingestion(
             // Only buy when model has a POSITIVE edge on the chosen side:
             //   edge > threshold  → model says home is underpriced → buy home token
             //   edge < -threshold → model says home is overpriced  → buy away token
+
+            // Don't open new positions when time-decay zone would immediately close them
+            if secs_left < TIME_DECAY_SECS {
+                info!(
+                    "Skipping new entry — {:.0}s left < TIME_DECAY_SECS({TIME_DECAY_SECS})",
+                    secs_left
+                );
+                continue;
+            }
+
             if edge.abs() < EDGE_THRESHOLD { continue; }
             if edge_confidence < 0.60 {
                 info!(

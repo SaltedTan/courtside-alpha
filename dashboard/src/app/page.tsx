@@ -946,13 +946,13 @@ function LiveGameCard({ game }: { game: LiveGame }) {
         </div>
       </div>
 
-      {/* Probability comparison bars */}
+      {/* Probability comparison bars — both values are P(home_team wins) */}
       <div className="space-y-2">
-        <ProbBar label="Model" value={modelProb} color="bg-green-500" />
+        <ProbBar label={`Model · P(${game.home_team} wins)`} value={modelProb} color="bg-green-500" />
         {hasMarket ? (
-          <ProbBar label="Market" value={marketProb!} color="bg-blue-500" />
+          <ProbBar label={`Market · P(${game.home_team} wins)`} value={marketProb!} color="bg-blue-500" />
         ) : (
-          <ProbBar label="Proxy" value={proxyProb} color="bg-gray-500" />
+          <ProbBar label={`Proxy · P(${game.home_team} wins)`} value={proxyProb} color="bg-gray-500" />
         )}
       </div>
 
@@ -961,6 +961,9 @@ function LiveGameCard({ game }: { game: LiveGame }) {
         <DataPoint label="Edge">
           <span className={`font-bold ${edgePct >= 0 ? "text-green-400" : "text-red-400"}`}>
             {edgePct >= 0 ? "+" : ""}{edgePct.toFixed(1)}%
+          </span>
+          <span className="text-gray-600 ml-1 text-xs">
+            {edgePct >= 0 ? `↑${game.home_team}` : `↑${game.away_team}`}
           </span>
         </DataPoint>
         <DataPoint label="Confidence">
