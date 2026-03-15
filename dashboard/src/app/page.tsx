@@ -694,11 +694,17 @@ export default function Dashboard() {
                   <thead>
                     <tr className="bg-gray-900 text-gray-500 text-left uppercase tracking-wider">
                       <th className="px-4 py-3">Time</th>
-                      <th className="px-4 py-3">Market</th>
+                      <th className="px-4 py-3">Game / Team</th>
                       <th className="px-4 py-3">Action</th>
                       <th className="px-4 py-3">Stake</th>
-                      <th className="px-4 py-3">Market %</th>
-                      <th className="px-4 py-3">Model %</th>
+                      <th className="px-4 py-3">
+                        <div>Mkt Win %</div>
+                        <div className="text-gray-600 normal-case font-normal text-xs tracking-normal">P(bet team wins)</div>
+                      </th>
+                      <th className="px-4 py-3">
+                        <div>Mdl Win %</div>
+                        <div className="text-gray-600 normal-case font-normal text-xs tracking-normal">P(bet team wins)</div>
+                      </th>
                       <th className="px-4 py-3">Edge</th>
                       <th className="px-4 py-3">Order Hash</th>
                       <th className="px-4 py-3">Status</th>
@@ -715,8 +721,16 @@ export default function Dashboard() {
                           className="border-t border-gray-800/60 hover:bg-gray-900/50 transition-colors"
                         >
                           <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{fmt(t.timestamp)}</td>
-                          <td className="px-4 py-3 max-w-xs truncate text-gray-300" title={t.target_team}>
-                            {t.target_team}
+                          <td className="px-4 py-3 max-w-xs text-gray-300" title={t.target_team}>
+                            <div className="truncate">{t.target_team}</div>
+                            {t.bought_home !== null && (
+                              <div className="flex items-center gap-1 mt-0.5">
+                                <span className={`text-xs font-medium ${t.bought_home ? "text-blue-400" : "text-violet-400"}`}>
+                                  {t.bought_home ? "▲ HOME" : "▽ AWAY"}
+                                </span>
+                                <span className="text-xs text-gray-600">· {betTeam(t)}</span>
+                              </div>
+                            )}
                           </td>
                           <td className="px-4 py-3">
                             <span className={`font-semibold ${t.action.startsWith("BUY") ? "text-green-400" : "text-red-400"}`}>
@@ -724,8 +738,14 @@ export default function Dashboard() {
                             </span>
                           </td>
                           <td className="px-4 py-3 text-gray-400">${t.stake_amount.toFixed(0)}</td>
-                          <td className="px-4 py-3 text-gray-300">{(mkt * 100).toFixed(1)}%</td>
-                          <td className="px-4 py-3 text-gray-300">{(mdl * 100).toFixed(1)}%</td>
+                          <td className="px-4 py-3">
+                            <div className="text-gray-300">{(mkt * 100).toFixed(1)}%</div>
+                            <div className="text-xs text-gray-600 mt-0.5">{betTeam(t)}</div>
+                          </td>
+                          <td className="px-4 py-3">
+                            <div className="text-gray-300">{(mdl * 100).toFixed(1)}%</div>
+                            <div className="text-xs text-gray-600 mt-0.5">{betTeam(t)}</div>
+                          </td>
                           <td className={`px-4 py-3 font-bold ${edgePct >= 0 ? "text-green-400" : "text-red-400"}`}>
                             {edgePct >= 0 ? "+" : ""}{edgePct.toFixed(1)}%
                           </td>
@@ -828,6 +848,16 @@ function alignedProbs(t: Trade): { mkt: number; mdl: number; edge: number } {
   const mkt = flip ? 1 - t.market_implied_prob : t.market_implied_prob;
   const mdl = flip ? 1 - t.model_implied_prob  : t.model_implied_prob;
   return { mkt, mdl, edge: mdl - mkt };
+}
+
+/** The team whose win-probability the market%/model% columns are showing.
+ *  For BUY rows the action encodes the team directly. For SELL rows use target_team. */
+function betTeam(t: Trade): string {
+  if (t.action.startsWith("BUY_")) {
+    return t.action.slice(4).replace(/_/g, " ")
+      .toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  }
+  return t.target_team;
 }
 
 function ActivePositionCard({ trade }: { trade: Trade }) {

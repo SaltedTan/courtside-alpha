@@ -29,7 +29,14 @@
       "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT COUNT\\(*\\) FROM simulated_trades; SELECT * FROM simulated_trades LIMIT 3;\")",
       "Bash(git pull:*)",
       "Bash(git stash:*)",
-      "Bash(kill 38100 44515 62859 50865)"
+      "Bash(kill 38100 44515 62859 50865)",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/live_observations.sqlite \"SELECT action, target_team, market_implied_prob, model_implied_prob, bought_home, status FROM simulated_trades ORDER BY timestamp DESC LIMIT 15;\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/execution-engine/trades.db \"SELECT action, target_team, market_implied_prob, model_implied_prob, bought_home, status FROM simulated_trades ORDER BY timestamp DESC LIMIT 15;\")",
+      "Bash(find /Users/masamiyoshida/Documents/unihack -name *.db -o -name *.sqlite)",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT action, target_team, market_implied_prob, model_implied_prob, bought_home, status FROM simulated_trades ORDER BY timestamp DESC LIMIT 12;\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT action, target_team, market_implied_prob, model_implied_prob, bought_home, status FROM simulated_trades ORDER BY timestamp DESC LIMIT 20 OFFSET 12;\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT action, target_team, game_id, market_implied_prob, model_implied_prob, bought_home, status, pnl FROM simulated_trades WHERE action LIKE ''SELL%'' AND target_team != ''Heat'' ORDER BY timestamp DESC LIMIT 15;\")",
+      "Bash(sqlite3 /Users/masamiyoshida/Documents/unihack/trades.sqlite \"SELECT action, target_team, game_id, market_implied_prob, model_implied_prob, bought_home, status, pnl FROM simulated_trades WHERE action LIKE ''SELL%'' AND target_team <> ''Heat'' ORDER BY timestamp DESC LIMIT 15;\")"
     ]
   }
 }
