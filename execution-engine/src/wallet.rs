@@ -26,7 +26,7 @@ const EXCHANGE_HEX: &str = "4bFb41d5B3570DeFd03C39a9A4D8dE6Bd8B8982E";
 
 /// Deterministic seed — regenerating the engine always produces the same key.
 /// IMPORTANT: This wallet holds NO real funds. Do not send assets here.
-const TEST_SEED: &str = "nba-shadow-trader-testnet-unihack-2026-no-real-funds";
+const TEST_SEED: &str = "courtside-alpha-shadow-trader-testnet-2026-no-real-funds";
 
 // ── EIP-712 type strings ──────────────────────────────────────────────────────
 

@@ -1,14 +1,14 @@
 """
-server.py — FastAPI Live Inference Server
-==========================================
+Live Game Server — FastAPI Live Inference Server
+==================================================
 Polls NBA live API, runs predictions, exposes signals.
 
-Start: uvicorn server:app --reload --port 8000
+Start: uvicorn live_server.app:app --port 8000
 """
 
 import asyncio
-import time
 import json
+import logging
 from datetime import datetime
 from contextlib import asynccontextmanager
 
@@ -22,8 +22,10 @@ from nba_api.live.nba.endpoints import playbyplay as live_pbp
 from nba_api.live.nba.endpoints import boxscore as live_boxscore
 
 from features import FeatureEngine, DATA_DIR
-from market_data import fetch_polymarket_game_odds
-import recorder
+from live_server.market_data import fetch_polymarket_game_odds
+from live_server import recorder
+
+logger = logging.getLogger(__name__)
 
 
 # ══════════════════════════════════════════════
@@ -34,7 +36,7 @@ class ModelSuite:
     """Loads and holds all trained models."""
 
     def __init__(self):
-        print("Loading models...")
+        logger.info("Loading models...")
         self.win_model = xgb.XGBClassifier()
         self.win_model.load_model(f"{DATA_DIR}/v2_win_probability.json")
 
@@ -47,9 +49,9 @@ class ModelSuite:
         self.edge_model = xgb.XGBClassifier()
         self.edge_model.load_model(f"{DATA_DIR}/v2_edge_model.json")
 
-        print("All models loaded.")
+        logger.info("All models loaded.")
 
-    def predict(self, features, feature_engine):
+    def predict(self, features: dict, feature_engine: FeatureEngine) -> dict:
         """Run all models and return predictions."""
         live_arr = feature_engine.to_live_array(features)
         pregame_arr = feature_engine.to_pregame_array(features)
@@ -107,7 +109,7 @@ class GameTracker:
         self.last_poll = None
         self._completed = set()  # game_ids already finalized
 
-    def update_from_scoreboard(self, scoreboard_data):
+    def update_from_scoreboard(self, scoreboard_data: dict) -> list[str]:
         """Parse live scoreboard and update tracked games."""
         try:
             games_list = scoreboard_data.get("scoreboard", {}).get("games", [])
@@ -194,7 +196,7 @@ class GameTracker:
             bs = live_boxscore.BoxScore(game_id=game_id)
             data = bs.get_dict().get("game", {})
         except Exception as e:
-            print(f"  Boxscore fetch failed for {game_id}: {e}")
+            logger.warning("Boxscore fetch failed for %s: %s", game_id, e)
             return
 
         # ── Team-level stats ─────────────────────────────────────────
@@ -311,7 +313,7 @@ class GameTracker:
 
         return completed
 
-    def get_game_state(self, game_id):
+    def get_game_state(self, game_id: str) -> dict | None:
         """Return current state for a game."""
         return self.games.get(game_id)
 
@@ -349,7 +351,7 @@ class SignalGenerator:
         self.edge_threshold = edge_threshold
         self.confidence_threshold = confidence_threshold
 
-    def generate(self, predictions, game_state, market_prob=None):
+    def generate(self, predictions: dict, game_state: dict, market_prob: float | None = None) -> list[dict]:
         """
         Produce buy/sell signals from predictions.
         When market_prob is provided, use real market odds for edge;
@@ -442,17 +444,16 @@ async def poll_market_odds():
     """Background task: poll Polymarket for real odds every 30 seconds."""
     global latest_market_odds
 
-    print("Market odds polling started...")
+    logger.info("Market odds polling started.")
 
     while polling_active:
         try:
             odds = await asyncio.to_thread(fetch_polymarket_game_odds)
             latest_market_odds = odds
             if odds:
-                print(f"  [{datetime.now().strftime('%H:%M:%S')}] "
-                      f"Fetched {len(odds)} Polymarket game odds")
+                logger.info("Fetched %d Polymarket game odds", len(odds))
         except Exception as e:
-            print(f"  Market odds poll error: {e}")
+            logger.warning("Market odds poll error: %s", e)
 
         await asyncio.sleep(30)
 
@@ -483,7 +484,7 @@ async def poll_live_games():
     """Background task: poll NBA API every 30 seconds."""
     global latest_predictions
 
-    print("Live polling started...")
+    logger.info("Live polling started.")
 
     while polling_active:
         try:
@@ -499,8 +500,7 @@ async def poll_live_games():
                 tracker.games.pop(gid, None)
 
             if active_ids:
-                print(f"\n[{datetime.now().strftime('%H:%M:%S')}] "
-                      f"{len(active_ids)} live games")
+                logger.info("%d live games", len(active_ids))
 
             for game_id in active_ids:
               try:
@@ -577,19 +577,26 @@ async def poll_live_games():
 
                 if market_prob is not None:
                     mkt_edge_pct = abs(market_edge) * 100
-                    print(f"  {home} vs {away} ({score} Q{state['period']}) | "
-                          f"Model: {predictions['win_probability']:.1%} vs "
-                          f"Market: {market_prob:.1%} | "
-                          f"Edge: {mkt_edge_pct:.1f}% | "
-                          f"Signals: {len(signals)}")
+                    logger.debug(
+                        "%s vs %s (%s Q%d) | Model: %.1f%% vs Market: %.1f%% | "
+                        "Edge: %.1f%% | Signals: %d",
+                        home, away, score, state["period"],
+                        predictions["win_probability"] * 100,
+                        market_prob * 100,
+                        mkt_edge_pct,
+                        len(signals),
+                    )
                 elif signals:
                     edge_pct = predictions['abs_edge'] * 100
                     conf = predictions['edge_confidence'] * 100
-                    print(f"  {home} vs {away} ({score} Q{state['period']}) | "
-                          f"Edge: {edge_pct:.1f}% (proxy) | Conf: {conf:.1f}% | "
-                          f"Signals: {len(signals)}")
+                    logger.debug(
+                        "%s vs %s (%s Q%d) | Edge: %.1f%% (proxy) | "
+                        "Conf: %.1f%% | Signals: %d",
+                        home, away, score, state["period"],
+                        edge_pct, conf, len(signals),
+                    )
               except Exception as game_err:
-                print(f"  Game {game_id} error: {game_err}")
+                logger.error("Game %s error: %s", game_id, game_err)
 
             # Check for completed games and finalize outcomes
             completed = tracker.check_completed_games(sb_data)
@@ -599,14 +606,16 @@ async def poll_live_games():
                 h = gs["home_tricode"] if gs else "?"
                 a = gs["away_tricode"] if gs else "?"
                 w = h if winner else a
-                print(f"  FINAL: {h} {final_home} - {a} {final_away} | "
-                      f"{w} wins (outcome recorded)")
+                logger.info(
+                    "FINAL: %s %d - %s %d | %s wins (outcome recorded)",
+                    h, final_home, a, final_away, w,
+                )
                 # Remove from live views
                 latest_predictions.pop(gid, None)
                 tracker.games.pop(gid, None)
 
         except Exception as e:
-            print(f"  Polling error: {e}")
+            logger.error("Polling error: %s", e)
 
         await asyncio.sleep(30)
 
@@ -619,6 +628,11 @@ async def poll_live_games():
 async def lifespan(app: FastAPI):
     """Start background polling on startup."""
     global feature_engine, models, polling_active
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(name)s %(levelname)s %(message)s",
+    )
 
     feature_engine = FeatureEngine()
     models = ModelSuite()

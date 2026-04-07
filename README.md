@@ -1,6 +1,8 @@
 # Courtside Alpha
 
-Quantitative prediction market engine — real-time NBA model vs. Polymarket odds with testnet order signing.
+Quantitative prediction market engine that compares a real-time NBA win-probability model against Polymarket odds, with testnet order signing for shadow trading.
+
+**Stack:** Python (FastAPI, XGBoost, scikit-learn) &middot; Rust (Tokio, Axum) &middot; TypeScript (Next.js, Recharts) &middot; SQLite
 
 ## Quick start
 
@@ -14,104 +16,79 @@ Logs are written to `./logs/`. For manual per-service startup, see below.
 
 ---
 
+## Architecture
+
+```
+Polymarket WS ──► Execution Engine (Rust:4000) ──► SQLite (trades.sqlite)
+                        │         │                        ▲
+                        │         └──► Alpha Engine         │
+                        │              POST /predict        │
+                        │              (Python:8001)        │
+                        │                                   │
+                        └──► Live Game Server          Dashboard (Next.js:3000)
+                              GET /games                GET /trades, /wallet
+                              (Python:8000)
+```
+
+Four services form a real-time pipeline:
+
+1. **Live Game Server** polls the NBA live API for scores and boxscore stats every 30 s
+2. **Alpha Engine** loads a 4-model XGBoost ensemble (win probability, margin, market proxy, edge confidence) and serves 188-feature predictions over HTTP
+3. **Execution Engine** (Rust) connects to the Polymarket WebSocket, queries the Alpha Engine on each price tick, sizes positions via Kelly criterion, and signs EIP-712 orders with a testnet key
+4. **Dashboard** polls the Execution Engine every 3 s and renders live trades, wallet state, and model-vs-market charts
+
+---
+
 ## Prerequisites
 
 | Tool | Version |
 |------|---------|
-| Python | ≥ 3.11 |
-| Rust + Cargo | ≥ 1.78 |
-| Node.js | ≥ 20 |
+| Python | >= 3.11 |
+| Rust + Cargo | >= 1.78 |
+| Node.js | >= 20 |
 
 ---
 
 ## One-time setup
 
-Create a single venv at the project root — it covers all Python services:
-
 ```bash
-# From the project root
 python3 -m venv venv
 source venv/bin/activate
-pip install -r alpha-engine/requirements.txt
-pip install pyarrow
+pip install -r requirements.txt
 ```
 
-> **Important:** Always use `./venv/bin/python` (or `./venv/bin/pip`) directly instead of bare `python`/`uvicorn`, to avoid Anaconda or system Python shadowing the venv.
+> **Tip:** Use `./venv/bin/python` directly to avoid Anaconda or system Python shadowing the venv.
 
 ---
 
-## 1 — Live Game Server (Python · port 8000)
+## Running services individually
+
+### 1 — Live Game Server (Python, port 8000)
 
 ```bash
-./venv/bin/python -m uvicorn server:app --port 8000
+./venv/bin/python -m uvicorn live_server.app:app --port 8000
 ```
 
-Polls the NBA live API for scores and game state. The Execution Engine reads from this.
-
-Health check: http://localhost:8000/health
-
----
-
-## 2 — Alpha Engine (Python · port 8001)
+### 2 — Alpha Engine (Python, port 8001)
 
 ```bash
-./venv/bin/python alpha-engine/main.py
+./venv/bin/python alpha_engine/app.py
 ```
 
-Loads the trained XGBoost model suite and serves win-probability predictions.
-
-Health check: http://localhost:8001/health
-
----
-
-## 3 — Execution Engine (Rust · port 4000)
+### 3 — Execution Engine (Rust, port 4000)
 
 ```bash
-cd execution-engine
-cargo run --release
+cd execution-engine && cargo run --release
 ```
 
-Connects to Polymarket WebSocket, queries the Alpha Engine on each price tick, and logs shadow trades to `trades.sqlite`.
-
-Optional env vars:
-
-| Variable | Default | Description |
-|----------|---------|-------------|
+| Env var | Default | Description |
+|---------|---------|-------------|
 | `RUST_LOG` | `info` | Log level (`debug` for verbose output) |
 
-```bash
-cd execution-engine
-RUST_LOG=debug cargo run --release
-```
-
-Health check: http://localhost:4000/health
-
----
-
-## 4 — Dashboard (Next.js · port 3000)
+### 4 — Dashboard (Next.js, port 3000)
 
 ```bash
-cd dashboard
-npm install
-npm run dev
-```
-
-Open http://localhost:3000 — polls the Execution Engine every 3 s for live trades and wallet state.
-
----
-
-## Data flow
-
-```
-Polymarket WS ──► Execution Engine (port 4000) ──► SQLite (trades.sqlite)
-                        │         │                        ▲
-                        │         └──► Alpha Engine        │
-                        │              POST /predict       │
-                        │              (port 8001)         │
-                        │                                  │
-                        └──► Live Game Server         Dashboard (port 3000)
-                              GET /games               GET /trades, /wallet
-                              (port 8000)
+cd dashboard && npm install && npm run dev
 ```
 
 ---
@@ -119,20 +96,51 @@ Polymarket WS ──► Execution Engine (port 4000) ──► SQLite (trades.sq
 ## Project structure
 
 ```
-unihack/
-├── server.py               # Live game state server (port 8000)
-├── features.py             # Shared FeatureEngine
-├── market_data.py          # Polymarket odds helpers
-├── model.py / model_v2.py  # Model training scripts
-├── trades.sqlite           # Shadow trade log (auto-created)
-├── alpha-engine/           # FastAPI ML inference server (port 8001)
-│   ├── main.py
-│   └── requirements.txt
-├── execution-engine/       # Rust WebSocket + shadow trader (port 4000)
+courtside-alpha/
+├── features.py             # Shared 188-feature engine (team profiles, live stats, lag features)
+├── requirements.txt        # Python dependencies
+├── start.sh                # One-command launcher for all 4 services
+│
+├── live_server/            # Live game state server (port 8000)
+│   ├── app.py              #   FastAPI app — polls NBA API, runs models, exposes signals
+│   ├── market_data.py      #   Polymarket + Kalshi odds client
+│   └── recorder.py         #   SQLite observation recorder for retraining
+│
+├── alpha_engine/           # ML inference server (port 8001)
+│   └── app.py              #   FastAPI app — stateless prediction endpoint
+│
+├── execution-engine/       # Rust shadow trader (port 4000)
 │   ├── Cargo.toml
-│   └── src/main.rs
-├── dashboard/              # Next.js real-time UI (port 3000)
-│   ├── package.json
 │   └── src/
-└── venv/                   # Shared Python venv (gitignored)
+│       ├── main.rs         #   WebSocket client, Kelly sizing, trade logging
+│       └── wallet.rs       #   EIP-712 order signing (secp256k1)
+│
+├── dashboard/              # Next.js real-time UI (port 3000)
+│   └── src/app/
+│       ├── page.tsx        #   Main dashboard component
+│       ├── types.ts        #   Shared TypeScript interfaces
+│       ├── utils.ts        #   Helper functions
+│       └── components/     #   UI components (charts, cards, feed)
+│
+├── training/               # Offline: data collection & model training
+│   ├── train_model.py      #   XGBoost training pipeline (4-model ensemble)
+│   ├── fetch_games.py      #   NBA API historical data collector
+│   ├── fetch_pbp.py        #   Play-by-play scraper (S3)
+│   └── fetch_boxscores.py  #   Advanced boxscore scraper (S3)
+│
+├── data/                   # Model artifacts & team profiles (parquet + JSON)
+└── .env.example
 ```
+
+---
+
+## Key API endpoints
+
+| Service | Endpoint | Description |
+|---------|----------|-------------|
+| Live Server | `GET /games` | All live games with predictions |
+| Live Server | `GET /signals` | Games with active trading signals |
+| Live Server | `GET /health` | Service health check |
+| Alpha Engine | `POST /predict` | Stateless prediction from game state |
+| Execution Engine | `GET /trades` | All shadow trades |
+| Execution Engine | `GET /wallet` | Testnet wallet state |

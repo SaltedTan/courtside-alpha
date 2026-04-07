@@ -5,10 +5,16 @@ Used by both model training and live inference server.
 Constructs the 188-feature vector from live game state.
 """
 
-import pandas as pd
-import numpy as np
+from __future__ import annotations
+
 import json
+import logging
 from datetime import datetime, timedelta
+
+import numpy as np
+import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 DATA_DIR = "data"
 
@@ -19,7 +25,7 @@ class FeatureEngine:
     then constructs feature vectors on demand for live games.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # Load team profiles
         self.pace = pd.read_parquet(f"{DATA_DIR}/pace_profiles.parquet")
         self.clutch = pd.read_parquet(f"{DATA_DIR}/clutch_stats.parquet")
@@ -54,12 +60,12 @@ class FeatureEngine:
             self.games["TEAM_ID"], self.games["TEAM_ABBREVIATION"]
         ))
 
-        print(f"FeatureEngine initialized:")
-        print(f"  {len(self.team_profiles)} team profiles")
-        print(f"  {len(self.live_features)} live features expected")
-        print(f"  {len(self.pregame_features)} pregame features expected")
+        logger.info("FeatureEngine initialized:")
+        logger.info("  %d team profiles", len(self.team_profiles))
+        logger.info("  %d live features expected", len(self.live_features))
+        logger.info("  %d pregame features expected", len(self.pregame_features))
 
-    def _build_team_profiles(self):
+    def _build_team_profiles(self) -> pd.DataFrame:
         """Static season-level team profiles."""
         pace = self.pace.set_index("TEAM_ID")[[
             "PACE", "OFF_RATING", "DEF_RATING", "NET_RATING",
@@ -92,7 +98,7 @@ class FeatureEngine:
 
         return pace.fillna(0)
 
-    def _build_rolling_cache(self):
+    def _build_rolling_cache(self) -> dict[int, dict[str, float]]:
         """Pre-compute most recent rolling stats per team."""
         games = self.games.copy()
         games["GAME_DATE"] = pd.to_datetime(games["GAME_DATE"])
@@ -144,7 +150,7 @@ class FeatureEngine:
 
         return cache
 
-    def _build_fatigue_cache(self):
+    def _build_fatigue_cache(self) -> dict[int, dict[str, float]]:
         """Most recent fatigue info per team."""
         fat = self.fatigue.copy()
         fat_latest = fat.sort_values("GAME_DATE" if "GAME_DATE" in fat.columns else "GAME_ID")
@@ -158,7 +164,7 @@ class FeatureEngine:
             }
         return cache
 
-    def build_feature_vector(self, game_state):
+    def build_feature_vector(self, game_state: dict) -> dict:
         """
         Construct the full feature vector from a live game state dict.
 
@@ -421,14 +427,14 @@ class FeatureEngine:
 
         return features
 
-    def to_live_array(self, features):
+    def to_live_array(self, features: dict) -> np.ndarray:
         """Convert feature dict to array matching model's expected column order."""
         return np.array([[features.get(col, 0) for col in self.live_features]])
 
-    def to_pregame_array(self, features):
+    def to_pregame_array(self, features: dict) -> np.ndarray:
         """Convert feature dict to array matching proxy model's column order."""
         return np.array([[features.get(col, 0) for col in self.pregame_features]])
 
-    def to_edge_array(self, features):
+    def to_edge_array(self, features: dict) -> np.ndarray:
         """Convert feature dict to array matching edge model's column order."""
         return np.array([[features.get(col, 0) for col in self.edge_features]])

@@ -38,7 +38,7 @@ fi
 # ── Preflight checks ────────────────────────────────────────────────────────
 VENV="$ROOT/venv/bin/python"
 if [[ ! -x "$VENV" ]]; then
-    echo "ERROR: Python venv not found. Run:  python3 -m venv venv && ./venv/bin/pip install -r alpha-engine/requirements.txt"
+    echo "ERROR: Python venv not found. Run:  python3 -m venv venv && ./venv/bin/pip install -r requirements.txt"
     exit 1
 fi
 
@@ -73,15 +73,15 @@ echo "  ───────────────"
 echo ""
 
 # 1. Live Game Server (port 8000)
-$VENV -m uvicorn server:app --port 8000 \
+$VENV -m uvicorn live_server.app:app --port 8000 \
     > "$ROOT/logs/server.log" 2>&1 &
-echo "$! server.py:8000" >> "$PIDFILE"
+echo "$! live_server:8000" >> "$PIDFILE"
 echo "  [1/4] Live Game Server     → http://localhost:8000"
 
 # 2. Alpha Engine (port 8001)
-$VENV "$ROOT/alpha-engine/main.py" \
+$VENV "$ROOT/alpha_engine/app.py" \
     > "$ROOT/logs/alpha-engine.log" 2>&1 &
-echo "$! alpha-engine:8001" >> "$PIDFILE"
+echo "$! alpha_engine:8001" >> "$PIDFILE"
 echo "  [2/4] Alpha Engine         → http://localhost:8001"
 
 # 3. Execution Engine (port 4000)

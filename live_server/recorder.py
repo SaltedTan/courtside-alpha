@@ -17,13 +17,18 @@ Key advantage over historical training data:
 
 import sqlite3
 import json
+import logging
 import os
 from datetime import datetime, timezone
+
+import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 DB_PATH = "live_observations.sqlite"
 
 
-def _get_db():
+def _get_db() -> sqlite3.Connection:
     """Get SQLite connection with WAL mode for concurrent reads."""
     db = sqlite3.connect(DB_PATH)
     db.execute("PRAGMA journal_mode=WAL")
@@ -31,7 +36,7 @@ def _get_db():
     return db
 
 
-def init_db():
+def init_db() -> None:
     """Create tables if they don't exist."""
     db = _get_db()
     db.executescript("""
@@ -93,7 +98,7 @@ def init_db():
     db.close()
 
 
-def record_snapshot(game_id, game_state, predictions, market_odds, feature_vector):
+def record_snapshot(game_id: str, game_state: dict, predictions: dict, market_odds: dict | None, feature_vector: dict | None) -> None:
     """
     Record a single observation point during a live game.
 
@@ -138,7 +143,7 @@ def record_snapshot(game_id, game_state, predictions, market_odds, feature_vecto
     db.close()
 
 
-def finalize_game(game_id, final_home_score, final_away_score):
+def finalize_game(game_id: str, final_home_score: int, final_away_score: int) -> int:
     """
     Record final outcome and backfill snapshot labels.
 
@@ -178,7 +183,7 @@ def finalize_game(game_id, final_home_score, final_away_score):
     return home_won
 
 
-def export_for_training(db_path=None):
+def export_for_training(db_path: str | None = None) -> pd.DataFrame:
     """
     Export completed-game snapshots as a training-ready DataFrame.
 
@@ -190,8 +195,6 @@ def export_for_training(db_path=None):
     - RECORDED_MODEL_PROB, RECORDED_MARGIN, RECORDED_EDGE (model state)
     - RECORDED_AT (timestamp for recency weighting)
     """
-    import pandas as pd
-
     path = db_path or DB_PATH
     if not os.path.exists(path):
         return pd.DataFrame()
@@ -239,7 +242,7 @@ def export_for_training(db_path=None):
     return result
 
 
-def get_stats():
+def get_stats() -> dict:
     """Return recording statistics for monitoring."""
     if not os.path.exists(DB_PATH):
         return {

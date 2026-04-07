@@ -5,6 +5,7 @@ Collects real-time odds from prediction markets and records
 historical price movements for model training.
 """
 
+import logging
 import requests
 import time
 import json
@@ -13,6 +14,8 @@ import re
 from datetime import datetime, date
 import pandas as pd
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 DATA_DIR = "data"
 MARKETS_DIR = f"{DATA_DIR}/markets"
@@ -45,12 +48,12 @@ NBA_TRICODES = [
 ]
 
 
-def fetch_polymarket_nba_markets():
+def fetch_polymarket_nba_markets() -> list[dict]:
     """
     Fetch all active NBA game markets from Polymarket.
     Returns list of market dicts with prices and metadata.
     """
-    print("Fetching Polymarket NBA markets...")
+    logger.info("Fetching Polymarket NBA markets...")
     all_markets = []
     offset = 0
     limit = 100
@@ -70,7 +73,7 @@ def fetch_polymarket_nba_markets():
                 timeout=30,
             )
             if resp.status_code != 200:
-                print(f"  Polymarket API error: {resp.status_code}")
+                logger.warning("Polymarket API error: %s", resp.status_code)
                 break
 
             markets = resp.json()
@@ -93,7 +96,7 @@ def fetch_polymarket_nba_markets():
                     if isinstance(outcome_prices, str):
                         try:
                             outcome_prices = json.loads(outcome_prices)
-                        except:
+                        except (json.JSONDecodeError, ValueError):
                             outcome_prices = []
 
                     market_data = {
@@ -129,19 +132,19 @@ def fetch_polymarket_nba_markets():
                 break
 
         except Exception as e:
-            print(f"  Error: {e}")
+            logger.error("Error fetching Polymarket markets: %s", e)
             break
 
-    print(f"  Found {len(all_markets)} NBA markets on Polymarket")
+    logger.info("Found %d NBA markets on Polymarket", len(all_markets))
     return all_markets
 
 
-def fetch_polymarket_events_nba():
+def fetch_polymarket_events_nba() -> list[dict]:
     """
     Alternative: fetch via events endpoint which groups
     related markets (moneyline, spread, total) together.
     """
-    print("Fetching Polymarket NBA events...")
+    logger.info("Fetching Polymarket NBA events...")
     all_events = []
     offset = 0
 
@@ -189,7 +192,7 @@ def fetch_polymarket_events_nba():
                         if isinstance(outcome_prices, str):
                             try:
                                 outcome_prices = json.loads(outcome_prices)
-                            except:
+                            except (json.JSONDecodeError, ValueError):
                                 outcome_prices = []
 
                         event_data["markets"].append({
@@ -208,13 +211,13 @@ def fetch_polymarket_events_nba():
                 break
 
         except Exception as e:
-            print(f"  Error: {e}")
+            logger.error("Error fetching Polymarket events: %s", e)
             break
 
-    print(f"  Found {len(all_events)} NBA events on Polymarket")
+    logger.info("Found %d NBA events on Polymarket", len(all_events))
     return all_events
 
-def fetch_polymarket_game_odds():
+def fetch_polymarket_game_odds() -> dict[str, dict]:
     """
     Fetch individual NBA game moneylines from Polymarket.
     These replace the proxy model as our market baseline.
@@ -235,7 +238,7 @@ def fetch_polymarket_game_odds():
     )
 
     if resp.status_code != 200:
-        print(f"Polymarket API error: {resp.status_code}")
+        logger.warning("Polymarket API error: %s", resp.status_code)
         return {}
 
     events = resp.json()
@@ -251,7 +254,7 @@ def fetch_polymarket_game_odds():
             if isinstance(prices, str):
                 try:
                     prices = json.loads(prices)
-                except:
+                except (json.JSONDecodeError, ValueError):
                     prices = []
 
             volume = float(m.get("volume", 0) or 0)
@@ -322,12 +325,10 @@ def fetch_polymarket_game_odds():
                         if isinstance(sp, str):
                             try:
                                 sp = json.loads(sp)
-                            except:
+                            except (json.JSONDecodeError, ValueError):
                                 sp = []
 
                         if "spread" in sq.lower() and sp:
-                            # Extract spread number
-                            import re
                             spread_match = re.search(r'[-+]?\d+\.?\d*', sq.split("Spread:")[-1] if "Spread:" in sq else sq)
                             if spread_match:
                                 game_odds[game_key]["spread"] = float(spread_match.group())
@@ -339,7 +340,7 @@ def fetch_polymarket_game_odds():
                                 game_odds[game_key]["total"] = float(total_match.group())
                                 game_odds[game_key]["over_price"] = float(sp[0])
 
-    print(f"Found {len(game_odds)} NBA game moneylines on Polymarket")
+    logger.info("Found %d NBA game moneylines on Polymarket", len(game_odds))
     return game_odds
 
 
@@ -350,12 +351,12 @@ def fetch_polymarket_game_odds():
 KALSHI_BASE = "https://api.elections.kalshi.com/trade-api/v2"
 
 
-def fetch_kalshi_nba_markets():
+def fetch_kalshi_nba_markets() -> list[dict]:
     """
     Fetch NBA markets from Kalshi via events endpoint.
     Much faster than scanning all markets.
     """
-    print("Fetching Kalshi NBA markets...")
+    logger.info("Fetching Kalshi NBA markets...")
     all_markets = []
     cursor = None
 
@@ -376,7 +377,7 @@ def fetch_kalshi_nba_markets():
             )
 
             if resp.status_code != 200:
-                print(f"  Kalshi API error: {resp.status_code}")
+                logger.warning("Kalshi API error: %s", resp.status_code)
                 break
 
             data = resp.json()
@@ -417,10 +418,10 @@ def fetch_kalshi_nba_markets():
             time.sleep(0.3)
 
         except Exception as e:
-            print(f"  Error: {e}")
+            logger.error("Error fetching Kalshi markets: %s", e)
             break
 
-    print(f"  Found {len(all_markets)} NBA markets on Kalshi")
+    logger.info("Found %d NBA markets on Kalshi", len(all_markets))
     return all_markets
 
 
@@ -468,7 +469,7 @@ TEAM_ALIASES = {
 }
 
 
-def parse_teams_from_question(question):
+def parse_teams_from_question(question: str) -> tuple[dict | None, dict | None]:
     """
     Extract home and away teams from a market question.
     e.g. 'Will the Lakers beat the Celtics?' -> (LAL, BOS)
@@ -509,14 +510,12 @@ def parse_teams_from_question(question):
 #    Combines both platforms into one view
 # ══════════════════════════════════════════════
 
-def get_combined_nba_odds():
+def get_combined_nba_odds() -> pd.DataFrame:
     """
     Fetch from both platforms and combine into a
     single view of current NBA market odds.
     """
-    print("\n" + "=" * 50)
-    print("FETCHING COMBINED NBA ODDS")
-    print("=" * 50)
+    logger.info("FETCHING COMBINED NBA ODDS")
 
     poly_markets = fetch_polymarket_nba_markets()
     kalshi_markets = fetch_kalshi_nba_markets()
@@ -558,9 +557,9 @@ def get_combined_nba_odds():
         })
 
     df = pd.DataFrame(combined)
-    print(f"\n  Combined: {len(df)} markets total")
-    print(f"    Polymarket: {len([m for m in combined if m['platform'] == 'polymarket'])}")
-    print(f"    Kalshi: {len([m for m in combined if m['platform'] == 'kalshi'])}")
+    logger.info("Combined: %d markets total", len(df))
+    logger.debug("Polymarket: %d", len([m for m in combined if m['platform'] == 'polymarket']))
+    logger.debug("Kalshi: %d", len([m for m in combined if m['platform'] == 'kalshi']))
 
     return df
 
@@ -571,7 +570,7 @@ def get_combined_nba_odds():
 #    a time-series of odds for each game
 # ══════════════════════════════════════════════
 
-def record_odds_snapshot():
+def record_odds_snapshot() -> pd.DataFrame:
     """
     Take one snapshot of all current NBA odds.
     Appends to a running CSV file.
@@ -586,11 +585,11 @@ def record_odds_snapshot():
         odds = pd.concat([existing, odds], ignore_index=True)
 
     odds.to_csv(output_file, index=False)
-    print(f"  Saved {len(odds)} total odds records to {output_file}")
+    logger.info("Saved %d total odds records to %s", len(odds), output_file)
     return odds
 
 
-def run_odds_recorder(interval_seconds=60, duration_minutes=None):
+def run_odds_recorder(interval_seconds: int = 60, duration_minutes: int | None = None) -> None:
     """
     Continuously record odds at regular intervals.
     Run this during live games to build historical odds data.
@@ -602,12 +601,10 @@ def run_odds_recorder(interval_seconds=60, duration_minutes=None):
         # Record every 30 seconds for 3 hours
         python market_data.py --interval 30 --duration 180
     """
-    print("\n" + "=" * 50)
-    print("STARTING ODDS RECORDER")
-    print(f"  Interval: {interval_seconds}s")
-    print(f"  Duration: {'indefinite' if not duration_minutes else f'{duration_minutes} min'}")
-    print("  Press Ctrl+C to stop")
-    print("=" * 50)
+    logger.info("STARTING ODDS RECORDER")
+    logger.info("Interval: %ds", interval_seconds)
+    logger.info("Duration: %s", 'indefinite' if not duration_minutes else f'{duration_minutes} min')
+    logger.info("Press Ctrl+C to stop")
 
     start_time = time.time()
     snapshot_count = 0
@@ -615,45 +612,45 @@ def run_odds_recorder(interval_seconds=60, duration_minutes=None):
     try:
         while True:
             snapshot_count += 1
-            print(f"\n[Snapshot #{snapshot_count} — {datetime.now().strftime('%H:%M:%S')}]")
+            logger.info("Snapshot #%d — %s", snapshot_count, datetime.now().strftime('%H:%M:%S'))
             record_odds_snapshot()
 
             if duration_minutes:
                 elapsed = (time.time() - start_time) / 60
                 if elapsed >= duration_minutes:
-                    print(f"\n  Duration reached ({duration_minutes} min). Stopping.")
+                    logger.info("Duration reached (%d min). Stopping.", duration_minutes)
                     break
 
             time.sleep(interval_seconds)
 
     except KeyboardInterrupt:
-        print(f"\n\nStopped after {snapshot_count} snapshots.")
+        logger.info("Stopped after %d snapshots.", snapshot_count)
 
 
 # ══════════════════════════════════════════════
 # 6. ANALYZE CROSS-PLATFORM DIFFERENCES
 # ══════════════════════════════════════════════
 
-def analyze_platform_gaps():
+def analyze_platform_gaps() -> None:
     """
     Find games where Polymarket and Kalshi disagree
     on probability — these are arbitrage/edge opportunities.
     """
     odds_file = f"{MARKETS_DIR}/odds_history.csv"
     if not os.path.exists(odds_file):
-        print("No odds history yet. Run the recorder first.")
+        logger.warning("No odds history yet. Run the recorder first.")
         return
 
     df = pd.read_csv(odds_file)
-    print(f"\nAnalyzing {len(df)} odds records...")
+    logger.info("Analyzing %d odds records...", len(df))
 
     # Find matching games across platforms
     # Group by question similarity (team matchup)
     poly = df[df["platform"] == "polymarket"].copy()
     kalshi = df[df["platform"] == "kalshi"].copy()
 
-    print(f"  Polymarket: {len(poly)} records")
-    print(f"  Kalshi: {len(kalshi)} records")
+    logger.debug("Polymarket: %d records", len(poly))
+    logger.debug("Kalshi: %d records", len(kalshi))
 
     # Match by team pairs
     matches = []
@@ -678,15 +675,17 @@ def analyze_platform_gaps():
 
     if matches:
         match_df = pd.DataFrame(matches).sort_values("gap", ascending=False)
-        print(f"\n  Found {len(match_df)} cross-platform matches:")
-        print(f"\n  {'Game':>25s} {'Poly':>8s} {'Kalshi':>8s} {'Gap':>8s}")
-        print(f"  {'-'*51}")
+        logger.info("Found %d cross-platform matches:", len(match_df))
+        logger.info("  %25s %8s %8s %8s", "Game", "Poly", "Kalshi", "Gap")
+        logger.info("  %s", '-' * 51)
         for _, row in match_df.head(10).iterrows():
-            print(f"  {row['game']:>25s} {row['poly_prob']:>7.1%} {row['kalshi_prob']:>7.1%} {row['gap']:>7.1%}")
+            logger.info("  %25s %7.1f%% %7.1f%% %7.1f%%",
+                        row['game'], row['poly_prob'] * 100,
+                        row['kalshi_prob'] * 100, row['gap'] * 100)
 
         match_df.to_csv(f"{MARKETS_DIR}/platform_gaps.csv", index=False)
     else:
-        print("  No cross-platform matches found yet.")
+        logger.info("No cross-platform matches found yet.")
 
 
 # ══════════════════════════════════════════════
@@ -709,10 +708,11 @@ if __name__ == "__main__":
     if args.mode == "snapshot":
         odds = get_combined_nba_odds()
         if not odds.empty:
-            print("\n  Current NBA Markets:")
+            logger.info("Current NBA Markets:")
             for _, row in odds.iterrows():
-                print(f"    [{row['platform']:>12s}] {row['question'][:60]:60s} "
-                      f"Prob: {row['implied_prob']:.1%}  Vol: ${row['volume']:,.0f}")
+                logger.info("  [%12s] %-60s Prob: %.1f%%  Vol: $%,.0f",
+                            row['platform'], row['question'][:60],
+                            row['implied_prob'] * 100, row['volume'])
             odds.to_csv(f"{MARKETS_DIR}/latest_snapshot.csv", index=False)
 
     elif args.mode == "record":

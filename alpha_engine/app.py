@@ -3,27 +3,22 @@ Alpha Engine — FastAPI v2 inference server.
 Loads the trained v2 XGBoost ensemble and FeatureEngine,
 exposes full predictions over HTTP for the Rust execution engine.
 
-Run:
-    cd /path/to/unihack && uvicorn alpha-engine.main:app --host 0.0.0.0 --port 8001 --reload
-
-Or from the alpha-engine directory:
-    cd /path/to/unihack/alpha-engine && python main.py
+Start: uvicorn alpha_engine.app:app --port 8001
 """
 
+import logging
 import os
-import sys
 
 import numpy as np
 import xgboost as xgb
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-# ── Ensure parent dir is importable (for features.py) ────────────────────────
-PROJECT_ROOT = os.path.join(os.path.dirname(__file__), "..")
-sys.path.insert(0, PROJECT_ROOT)
-
 from features import FeatureEngine
 
+logger = logging.getLogger(__name__)
+
+PROJECT_ROOT = os.path.join(os.path.dirname(__file__), "..")
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 
 
@@ -35,7 +30,7 @@ class ModelSuite:
     """Loads and holds all v2 trained models."""
 
     def __init__(self):
-        print("[alpha-engine] Loading v2 models...")
+        logger.info("Loading v2 models...")
         self.win_model = xgb.XGBClassifier()
         self.win_model.load_model(f"{DATA_DIR}/v2_win_probability.json")
 
@@ -48,9 +43,9 @@ class ModelSuite:
         self.edge_model = xgb.XGBClassifier()
         self.edge_model.load_model(f"{DATA_DIR}/v2_edge_model.json")
 
-        print("[alpha-engine] All v2 models loaded.")
+        logger.info("All v2 models loaded.")
 
-    def predict(self, features, feature_engine):
+    def predict(self, features: dict, feature_engine: FeatureEngine) -> dict:
         """Run all models and return predictions."""
         live_arr = feature_engine.to_live_array(features)
         pregame_arr = feature_engine.to_pregame_array(features)
@@ -97,6 +92,7 @@ models: ModelSuite | None = None
 
 @app.on_event("startup")
 def load_models():
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
     global feature_engine, models
     # Change cwd to project root so FeatureEngine finds data/ via relative path
     os.chdir(PROJECT_ROOT)
